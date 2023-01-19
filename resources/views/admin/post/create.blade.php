@@ -2,8 +2,8 @@
 
 @section('content')
 
-<h2>ニュース新規作成</h2>
-<form action="{{ action('App\Http\Controllers\Admin\PostController@create') }}" method="post" >
+<h2>投稿ページ</h2>
+<form action="{{ action('App\Http\Controllers\Admin\PostController@create') }}" method="post" enctype="multipart/form-data">
     @if (count($errors) > 0)
         <ul>
             @foreach($errors->all() as $e)

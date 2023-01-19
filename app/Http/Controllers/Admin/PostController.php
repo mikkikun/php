@@ -9,6 +9,11 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function home()
+    {
+        return view('admin.post.index');
+    }
+
     public function add()
     {
         return view('admin.post.create');
@@ -16,6 +21,7 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
+        $this->validate($request, Post::$rules);
         $post = new Post;
         $form = $request->all();
         if (isset($form['image'])) {
@@ -29,7 +35,20 @@ class PostController extends Controller
         $post->fill($form);
         $post->save();
         return redirect('admin/post/create');
-    }  
+    }
+
+    public function index(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title != '') {
+          // 検索されたら検索結果を取得する
+            $posts = Post::where('title', $cond_title)->get();
+        } else {
+          // それ以外はすべてのニュースを取得する
+            $posts = Post::all();
+        }
+        return view('admin.post.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }
 
     
 }

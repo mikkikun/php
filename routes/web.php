@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('admin/post/index', [App\Http\Controllers\Admin\PostController::class, 'home'])->name('admin/post/index');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('post/create', [PostController::class, 'add'])->middleware('auth');
     Route::post('post/create', [PostController::class, 'create'])->middleware('auth');
+    Route::get('post/index', [PostController::class, 'index'])->middleware('auth'); 
 });

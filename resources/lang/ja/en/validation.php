@@ -107,8 +107,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => ':attributeしてください',
-    
+    'required' => 'The :attribute field is required.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -159,10 +158,6 @@ return [
     |
     */
 
-    'attributes' => [
-        'title' => 'タイトルを入力',
-        'body' => '本文を入力',
-        'cardgame' => 'カードゲームの種類を選択'
-    ],
+    'attributes' => [],
 
 ];

@@ -10,7 +10,8 @@ class Post extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'title' => 'タイトル',
-        'body' => '本文',
+        'title' => 'required',
+        'body' => 'required',
+        'cardgame'  => 'required'
     );
 }
