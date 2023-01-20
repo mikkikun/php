@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -23,6 +23,7 @@ class PostController extends Controller
     {
         $this->validate($request, Post::$rules);
         $post = new Post;
+        $post->user_id = Auth::id();
         $form = $request->all();
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -34,7 +35,7 @@ class PostController extends Controller
         unset($form['image']);
         $post->fill($form);
         $post->save();
-        return redirect('admin/post/create');
+        return redirect('admin/post/index');
     }
 
     public function index(Request $request)

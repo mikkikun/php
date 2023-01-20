@@ -16,9 +16,9 @@ class CreatePostTable extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('body', 255)->nullable();
-            $table->string('cardgame');
+            $table->string('cardgame')->nullable();
             $table->string('image_path')->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();

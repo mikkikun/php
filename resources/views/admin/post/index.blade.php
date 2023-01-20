@@ -10,22 +10,27 @@
             <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
             {{ csrf_field() }}
             <input type="submit" class="btn btn-primary" value="検索">
-            <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th width="10%">ID</th>
-                        <th width="20%">タイトル</th>
-                        <th width="50%">本文</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($posts as $post)
-                        <tr>
-                            <th>{{ $post->id }}</th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    @endforeach
-                </tbody>
+
+
+            <table>
+            @foreach($posts as $posts)
+            <tr>
+                <td class = "">{{ $posts->user->name }}</td>
+                <td class = "">{{ $posts->updated_at }}</td>
+            </tr>
+            <tr class = "">
+                <td class = "">{{ $posts->title}}</td>
+                <td class = "">{{ $posts->body}}</td>
+                <td class = "">{{ $posts->cardgame}}</td>
+                <td class = "">
+                @if($posts->user_id == Auth::id())
+                <form action="" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                    <input type="submit" class="btn btn-primary" value="削除">
+                </form>
+                @endif
+                </td>
+            </tr>
+            @endforeach
             </table>
 @endsection
