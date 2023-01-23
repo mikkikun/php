@@ -22,12 +22,17 @@
                 <td class = "">{{ $posts->title}}</td>
                 <td class = "">{{ $posts->body}}</td>
                 <td class = "">{{ $posts->cardgame}}</td>
+                <td class = ""><img src="{{ asset('storage/app/public/image{$posts->image_path}') }}"></td>
+                
                 <td class = "">
                 @if($posts->user_id == Auth::id())
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ action('App\Http\Controllers\Admin\PostController@delete', ['id' => $posts->id]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="削除">
                 </form>
+                <div>
+                    <a href="{{ action('App\Http\Controllers\Admin\PostController@edit', ['id' => $posts->id]) }}">編集</a>
+                </div>
                 @endif
                 </td>
             </tr>

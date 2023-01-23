@@ -42,14 +42,49 @@ class PostController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-          // 検索されたら検索結果を取得する
             $posts = Post::where('title', $cond_title)->get();
         } else {
-          // それ以外はすべてのニュースを取得する
             $posts = Post::all();
         }
         return view('admin.post.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 
-    
+    public function edit(Request $request)
+    {
+      // News Modelからデータを取得する
+        $post = Post::find($request->id);
+        if (empty($post)) {
+        abort(404);    
+        }
+        return view('admin.post.edit', ['post_form' => $post]);
+    }
+
+
+    public function update(Request $request)
+    {
+        $this->validate($request, Post::$rules);
+        $post = Post::find($request->id);
+        $post_form = $request->all();
+        if (isset($post_form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $post->image_path = basename($path);
+            unset($post_form['image']);
+        } elseif (0 == strcmp($request->remove, 'true')) {
+            $post->image_path = null;
+        }
+        unset($post_form['_token']);
+        unset($post_form['remove']);
+        // 該当するデータを上書きして保存する
+        $post->fill($post_form)->save();
+        return redirect('admin/post/index');
+    }
+
+    public function delete(Request $request)
+    {
+        $post = new Post;
+        $post = Post::find($request->id);
+        $post->delete();
+        return redirect('admin/post/index');
+    }
+
 }
