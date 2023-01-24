@@ -22,8 +22,7 @@
                 <td class = "">{{ $posts->title}}</td>
                 <td class = "">{{ $posts->body}}</td>
                 <td class = "">{{ $posts->cardgame}}</td>
-                <td class = ""><img src="{{ asset('storage/app/public/image{$posts->image_path}') }}"></td>
-                
+                <td class = ""><img src="{{ asset('storage/image').'/'.$posts->image_path }}"></td>
                 <td class = "">
                 @if($posts->user_id == Auth::id())
                 <form action="{{ action('App\Http\Controllers\Admin\PostController@delete', ['id' => $posts->id]) }}" method="post" enctype="multipart/form-data">

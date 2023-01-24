@@ -51,7 +51,6 @@ class PostController extends Controller
 
     public function edit(Request $request)
     {
-      // News Modelからデータを取得する
         $post = Post::find($request->id);
         if (empty($post)) {
         abort(404);    

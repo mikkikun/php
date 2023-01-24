@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProfileController;
+
 
 
 /*
@@ -21,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('admin/post/index', [App\Http\Controllers\Admin\PostController::class, 'home'])->name('admin/post/index');
+Route::get('post/index', [App\Http\Controllers\Admin\PostController::class, 'home'])->name('admin/post/index');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('post/create', [PostController::class, 'add'])->middleware('auth');
@@ -30,4 +32,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('post/edit', [PostController::class, 'edit'])->middleware('auth'); 
     Route::post('post/edit', [PostController::class, 'update'])->middleware('auth');
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');
+
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('prof-edit'); 
 });
