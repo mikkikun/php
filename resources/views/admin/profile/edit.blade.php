@@ -12,6 +12,11 @@
     
     <label>名前</label>
     <input type="text" class="" name="name" value="{{ $users_form->name }}">
+    <label>自己紹介文</label>
+    <textarea class="" name="profile" rows="20" value="{{ $users_form->profile }}"></textarea>
+
+
+
 
     <input type="hidden" name="id" value="{{ $users_form->id }}">
     {{ csrf_field() }}

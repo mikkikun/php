@@ -32,7 +32,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('post/edit', [PostController::class, 'edit'])->middleware('auth'); 
     Route::post('post/edit', [PostController::class, 'update'])->middleware('auth');
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');
+    Route::get('post/index', [PostController::class, 'index'])->middleware('auth')->name('top'); 
 
+    
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
     Route::post('profile/edit', [ProfileController::class, 'update'])->middleware('auth');
+    Route::get('post/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-deletepage');
+    Route::post('post/delte', [ProfileController::class, 'delete'])->middleware('auth');
+    
 });

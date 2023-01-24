@@ -58,8 +58,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('top')}}">
+                                        {{ __('みんなの投稿') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('profile-edit' , [Auth::user()->id]) }}">
                                         {{ __('プロフィール編集') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('profile-deletepage' , [Auth::user()->id]) }}">
+                                        {{ __('アカウント削除') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
