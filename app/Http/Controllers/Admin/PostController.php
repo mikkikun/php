@@ -73,7 +73,6 @@ class PostController extends Controller
         }
         unset($post_form['_token']);
         unset($post_form['remove']);
-        // 該当するデータを上書きして保存する
         $post->fill($post_form)->save();
         return redirect('admin/post/index');
     }

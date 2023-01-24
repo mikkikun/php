@@ -17,4 +17,12 @@ class ProfileController extends Controller
         }
         return view('admin.profile.edit', ['users_form' => $users]);
     }
+
+    public function update(Request $request)
+    {
+        $users = User::find($request->id);
+        $users_form = $request->all();
+        $users->fill($users_form)->save();
+        return redirect('admin/post/index');
+    }
 }

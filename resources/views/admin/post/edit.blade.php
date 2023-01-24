@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>ニュース編集</h2>
 <form action="{{ action('App\Http\Controllers\Admin\PostController@update') }}" method="post" enctype="multipart/form-data">
     @if (count($errors) > 0)
         <ul>
