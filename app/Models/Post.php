@@ -17,6 +17,7 @@ class Post extends Model
         'body' => 'required',
         'cardgame'  => 'required'
     );
+    
     public function user()
     {
         return $this->belongsTo('App\Models\User');

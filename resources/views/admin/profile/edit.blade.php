@@ -14,7 +14,8 @@
     <input type="text" class="" name="name" value="{{ $users_form->name }}">
     <label>自己紹介文</label>
     <textarea class="" name="profile" rows="20" value="{{ $users_form->profile }}"></textarea>
-
+    <label>画像</label>
+    <input type="file" class="" name="profile_image" value="{{ $users_form->profile }}">
 
 
 
@@ -26,7 +27,7 @@
 
 
 
-
+</form>
 
 
 @endsection

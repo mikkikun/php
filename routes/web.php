@@ -37,7 +37,8 @@ Route::group(['prefix' => 'admin'], function() {
     
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
     Route::post('profile/edit', [ProfileController::class, 'update'])->middleware('auth');
-    Route::get('post/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-deletepage');
-    Route::post('post/delte', [ProfileController::class, 'delete'])->middleware('auth');
+    Route::get('profile/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-delete-page');
+    Route::post('profile/delte', [ProfileController::class, 'delete'])->middleware('auth');
+    Route::get('profile/mypage', [ProfileController::class, 'index'])->middleware('auth')->name('mypage'); 
     
 });
