@@ -35,7 +35,11 @@
                 <div>
                     <a href="{{ action('App\Http\Controllers\Admin\PostController@edit', ['id' => $data->id]) }}">編集</a>
                 </div>
+                
                 @endif
+                <div>
+                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@indexpage', ['id' => $data->user->id]) }}">投稿者のページ</a>
+                </div>
                 </td>
             </tr>
             @endforeach

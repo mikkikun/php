@@ -36,9 +36,6 @@ class ProfileController extends Controller
         } elseif (0 == strcmp($request->remove, 'true')) {
             $users->profile_image = null;
         }
-
-
-
         $users->save();
         return redirect('admin/post/index');
     }
@@ -69,6 +66,14 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         $users = User::find(Auth::id());
-        return view('admin.profile.mypage', ['users' => $users]);
+        $posts = Post::where('user_id', \Auth::user()->id)->get();
+        return view('admin.profile.mypage', ['posts' => $posts,'users' => $users]);
+    }
+
+    public function indexpage(Request $request)
+    {
+        $users = User::find($request->id);
+        $posts = Post::where('user_id', $request->id)->get();
+        return view('admin.profile.mypage', ['posts' => $posts,'users' => $users]);
     }
 }

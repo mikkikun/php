@@ -33,12 +33,13 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('post/edit', [PostController::class, 'update'])->middleware('auth');
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');
     Route::get('post/index', [PostController::class, 'index'])->middleware('auth')->name('top'); 
-
+    
     
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
     Route::post('profile/edit', [ProfileController::class, 'update'])->middleware('auth');
     Route::get('profile/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-delete-page');
     Route::post('profile/delte', [ProfileController::class, 'delete'])->middleware('auth');
     Route::get('profile/mypage', [ProfileController::class, 'index'])->middleware('auth')->name('mypage'); 
+    Route::get('post/mypage', [ProfileController::class, 'indexpage'])->middleware('auth'); 
     
 });
