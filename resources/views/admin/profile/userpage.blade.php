@@ -1,15 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-@if (count($errors) > 0)
-        <ul>
-            @foreach($errors->all() as $e)
-                <li>{{ $e }}</li>
-            @endforeach
-          </ul>
-    @endif
-
+    
             <table>
             <tr>
             <td class = "">
@@ -21,10 +13,35 @@
             </tr>
             <tr class = "">
                 <td class = "">{{ $users->profile}}</td>
-                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follow_page') }}">フォロー</a></td>
-                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follower_page') }}">フォロワー</a></td>
+                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follow_page', ['id' => $users]) }}">フォロー</a></td>
+                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follower_page', ['id' => $users]) }}">フォロワー</a></td>
             </tr>
             </table>
+
+            
+            <div class="d-flex justify-content-end flex-grow-1">
+                               @if(Auth::id() != $users->id)
+                               @if (Auth::user()->isFollowing($users->id))
+                                   <form action="{{ route('unfollow', ['id' => $users]) }}" method="POST">
+                                       {{ csrf_field() }}
+                                       {{ method_field('DELETE') }}
+ 
+                                       <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                   </form>
+                               @else
+                                   <form action="{{ route('follow', ['id' => $users]) }}" method="POST">
+                                       {{ csrf_field() }}
+ 
+                                       <button type="submit" class="btn btn-primary">フォローする</button>
+                                   </form>
+                               @endif
+                               @endif
+
+
+
+
+
+
 
 
             <table>

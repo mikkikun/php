@@ -38,8 +38,11 @@
                 
                 @endif
                 <div>
-                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@indexpage', ['id' => $data->user->id]) }}">投稿者のページ</a>
+                @if($data->user_id !== Auth::id())
+                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">投稿者のページ</a>
+                @endif
                 </div>
+
                 </td>
             </tr>
             @endforeach

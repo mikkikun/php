@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Follow;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -70,10 +71,65 @@ class ProfileController extends Controller
         return view('admin.profile.mypage', ['posts' => $posts,'users' => $users]);
     }
 
-    public function indexpage(Request $request)
+    public function userpage(Request $request)
     {
         $users = User::find($request->id);
         $posts = Post::where('user_id', $request->id)->get();
-        return view('admin.profile.mypage', ['posts' => $posts,'users' => $users]);
+        return view('admin.profile.userpage', ['posts' => $posts,'users' => $users]);
+    }
+
+    public function follow(Request $request)
+    {
+        
+        $follower = auth()->user();
+        
+        $id = $request->id;
+       // フォローしているか
+        $is_following = $follower->isFollowing($id);
+        if(!$is_following) {
+           // フォローしていなければフォローする
+            $follower->follow($id);
+            return back();
+        }
+    }
+
+   // フォロー解除
+    public function unfollow(Request $request)
+    {
+        $follower = auth()->user();
+        $id = $request->id;
+       // フォローしているか
+        $is_following = $follower->isFollowing($id);
+        if($is_following) {
+           // フォローしていればフォローを解除する
+            $follower->unfollow($id);
+            return back();
+        }
+    }
+
+    public function follow_page(Request $request)
+    {
+        $users = User::query()->whereIn('id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
+        return view('admin.profile.follow', ['users' => $users]);
+    }
+
+    public function follower_page(Request $request)
+    {
+        $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
+        return view('admin.profile.follower', ['users' => $users]);
+    }
+
+    public function user_follow_page(Request $request)
+    {
+        $id = $request->id;
+        $users = User::query()->whereIn('id', User::user()->follows()->pluck('followed_id'))->latest()->get();
+        return view('admin.profile.user_follow', ['users' => $users]);
+    }
+
+    public function user_follower_page(Request $request)
+    {
+        $id = $request->id;
+        $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
+        return view('admin.profile.user_follower', ['users' => $users]);
     }
 }

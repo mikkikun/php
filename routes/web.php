@@ -40,6 +40,15 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-delete-page');
     Route::post('profile/delte', [ProfileController::class, 'delete'])->middleware('auth');
     Route::get('profile/mypage', [ProfileController::class, 'index'])->middleware('auth')->name('mypage'); 
-    Route::get('post/mypage', [ProfileController::class, 'indexpage'])->middleware('auth'); 
+    Route::get('profile/userpage', [ProfileController::class, 'userpage'])->middleware('auth'); 
+
+    Route::post('profile/userpage', [ProfileController::class, 'follow'])->middleware('auth')->name('follow');
+    Route::delete('profile/userpage',[ProfileController::class, 'unfollow'])->middleware('auth')->name('unfollow');
+    Route::get('profile/follow', [ProfileController::class, 'follow_page'])->middleware('auth'); 
+    Route::get('profile/follower', [ProfileController::class, 'follower_page'])->middleware('auth'); 
+    Route::get('profile/user_follow', [ProfileController::class, 'user_follow_page'])->middleware('auth'); 
+    Route::get('profile/user_follower', [ProfileController::class, 'user_follower_page'])->middleware('auth'); 
+
+
     
 });
