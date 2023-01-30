@@ -42,9 +42,9 @@ class PostController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Post::where('title', $cond_title)->get();
+            $posts = Post::where('title', $cond_title)->latest()->get();
         } else {
-            $posts = Post::all();
+            $posts = Post::all()->sortByDesc('created_at');
         }
         return view('admin.post.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -83,6 +83,17 @@ class PostController extends Controller
         $post = Post::find($request->id);
         $post->delete();
         return redirect('admin/post/index');
+    }
+
+    public function follow_pose(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title != '') {
+            $posts = Post::where('title', $cond_title)->get();
+        } else {
+            $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        }
+        return view('admin.post.follow_pose', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
 
 }

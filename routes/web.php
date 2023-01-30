@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('post/edit', [PostController::class, 'update'])->middleware('auth');
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');
     Route::get('post/index', [PostController::class, 'index'])->middleware('auth')->name('top'); 
-    
+    Route::get('post/follow_pose', [PostController::class, 'follow_pose'])->middleware('auth')->name('follow_pose');
     
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
     Route::post('profile/edit', [ProfileController::class, 'update'])->middleware('auth');
@@ -46,8 +46,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('profile/userpage',[ProfileController::class, 'unfollow'])->middleware('auth')->name('unfollow');
     Route::get('profile/follow', [ProfileController::class, 'follow_page'])->middleware('auth'); 
     Route::get('profile/follower', [ProfileController::class, 'follower_page'])->middleware('auth'); 
-    Route::get('profile/follow', [ProfileController::class, 'user_follow_page'])->middleware('auth'); 
-    Route::get('profile/follower', [ProfileController::class, 'user_follower_page'])->middleware('auth'); 
+    Route::get('profile/user_follow', [ProfileController::class, 'user_follow_page'])->middleware('auth'); 
+    Route::get('profile/user_follower', [ProfileController::class, 'user_follower_page'])->middleware('auth'); 
 
 
     
