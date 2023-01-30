@@ -122,14 +122,14 @@ class ProfileController extends Controller
     public function user_follow_page(Request $request)
     {
         $id = $request->id;
-        $users = User::query()->whereIn('id', User::user()->follows()->pluck('followed_id'))->latest()->get();
-        return view('admin.profile.user_follow', ['users' => $users]);
+        $users = User::query()->whereIn('id', User::find($id)->follows()->pluck('followed_id'))->latest()->get();
+        return view('admin.profile.follow', ['users' => $users]);
     }
 
     public function user_follower_page(Request $request)
     {
         $id = $request->id;
-        $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
-        return view('admin.profile.user_follower', ['users' => $users]);
+        $users = User::query()->whereIn('id', User::find($id)->followers()->pluck('following_id'))->latest()->get();
+        return view('admin.profile.follower', ['users' => $users]);
     }
 }
