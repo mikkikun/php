@@ -35,7 +35,6 @@
                 </td>
             </tr>
             </table>
-            </form>
 
 
 
@@ -53,17 +52,9 @@
                         <img src="{{ asset('storage/image').'/'.$data->image_path }}">
                     @endif
                 </td>
-                <td class = "">
-                @if($data->user_id == Auth::id())
-                <form action="{{ action('App\Http\Controllers\Admin\CommentsController@delete') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="削除">
-                </form>
-                <div>
-                    <a href="{{ action('App\Http\Controllers\Admin\PostController@edit', ['id' => $data->id]) }}">編集</a>
-                </div>
+
                 
-                @endif
+                
                 <div>
                 @if($data->user_id !== Auth::id())
                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">投稿者のページ</a>

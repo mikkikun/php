@@ -39,11 +39,39 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function delete(Request $request)
-    {
-        $comments = new Comment;
-        $comments = Comment::find($request->id);
+    // public function edit(Request $request)
+    // {
+    //     $comments = Comment::find($request->id);
+    //     if (empty($comments)) {
+    //     abort(404);    
+    //     }
+    //     return view('admin.comment.edit', ['comment_form' => $comments]);
+    // }
+
+    // public function update(Request $request)
+    // {
         
-        return back();
-    }
+    //     $this->validate($request, Comment::$rules);
+    //     $comments = Comment::find($request->id);
+    //     $comment_form = $request->all();
+    //     $comments->body = $request->body;
+    //     if (isset($comment_form['image'])) {
+    //         $path = $request->file('image')->store('public/image');
+    //         $comment->image_path = basename($path);
+    //         unset($comment_form['image']);
+    //     } elseif (0 == strcmp($request->remove, 'true')) {
+    //         $comment->image_path = null;
+    //     }
+    //     $comments->save();
+
+    //     return view('admin.comment.index');
+    // }
+
+    // public function delete(Request $request)
+    // {
+    //     $comments = new Comment;
+    //     $comments = Comment::find($request->id);
+    //     $comments->delete();
+    //     return back();
+    // }
 }
