@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\CommentsController;
 
 
 
@@ -35,6 +36,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('post/index', [PostController::class, 'index'])->middleware('auth')->name('top'); 
     Route::get('post/follow_pose', [PostController::class, 'follow_pose'])->middleware('auth')->name('follow_pose');
     
+
+    
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
     Route::post('profile/edit', [ProfileController::class, 'update'])->middleware('auth');
     Route::get('profile/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-delete-page');
@@ -50,5 +53,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/user_follower', [ProfileController::class, 'user_follower_page'])->middleware('auth'); 
 
 
+    Route::get('comment/index', [CommentsController::class, 'index'])->middleware('auth'); 
+    Route::post('comment/index', [CommentsController::class, 'create'])->middleware('auth');
+    Route::delete('comment/index', [CommentsController::class, 'delete'])->middleware('auth');
     
+    
+
 });

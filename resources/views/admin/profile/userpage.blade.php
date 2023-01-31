@@ -13,8 +13,8 @@
             </tr>
             <tr class = "">
                 <td class = "">{{ $users->profile}}</td>
-                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follow_page', ['id' => $users]) }}">フォロー</a></td>
-                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follower_page', ['id' => $users]) }}">フォロワー</a></td>
+                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follow_page') }}">フォロー</a></td>
+                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follower_page') }}">フォロワー</a></td>
             </tr>
             </table>
 

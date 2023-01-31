@@ -42,6 +42,8 @@
                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">投稿者のページ</a>
                 @endif
                 </div>
+                <div>
+                <a href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['id' => $data->id]) }}">コメント</a>
 
                 </td>
             </tr>
