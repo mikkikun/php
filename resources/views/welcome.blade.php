@@ -217,32 +217,3 @@
 
 
 
-<!-- <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Card Match</title>
-        <link href="" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-        <div class = "header-nav">
-        <div class = "intro">My Work</div>
-        <div class = "menu">
-        </div>
-        </div>
-        </header>
-
-    </body>
-            @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/admin/post/index') }}" class="">ホームへ</a>
-                    @else
-                        <a href="{{ route('login') }}" class="">ログイン</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="">新規登録</a>
-                        @endif
-                    @endauth
-            @endif
-</html> -->
