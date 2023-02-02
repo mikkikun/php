@@ -43,7 +43,7 @@ class PostController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Post::where('title', $cond_title)->latest()->get();
+            $posts = Post::where('cardgame', $cond_title)->latest()->get();
         } else {
             $posts = Post::all()->sortByDesc('created_at');
         }

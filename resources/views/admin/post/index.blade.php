@@ -3,6 +3,25 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <form action="{{ action('App\Http\Controllers\Admin\PostController@index') }}" method="get">
+            <label class="col-md-2">カードゲーム検索</label>
+                <select type="text" class="" name="cond_title" value="{{ $cond_title }}">
+                    <option value="">選択してください</option>
+                    <option value="遊戯王">遊戯王</option>
+                    <option value="遊戯王ラッシュデュエル">遊戯王ラッシュデュエル</option>
+                    <option value="デュエル・マスターズ">デュエル・マスターズ</option>
+                    <option value="ポケモンカード">ポケモンカード</option>
+                    <option value="ヴァイスシュヴァルツ">ヴァイスシュヴァルツ</option>
+                    <option value="シャドウバース">シャドウバース</option>
+                    <option value="ヴァンガード">ヴァンガード</option>
+                    <option value="ONE PIECE">ONE PIECE</option>
+                    <option value="マジック・ザ・ギャザリング">マジック・ザ・ギャザリング</option>
+                    <option value="ウィクロス">ウィクロス</option>
+                    <option value="その他">その他</option>
+                </select>
+            {{ csrf_field() }}
+        <input type="submit" class="btn btn-primary" value="検索">
+        <p></p>
         @foreach ($posts as $data)
             <div class="col-md-8 mb-3">
                 <div class="card">
@@ -11,9 +30,13 @@
                             <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
                                 <img src="{{ asset('storage/profile_image').'/'.$data->user->profile_image }}" class="rounded-circle" width="50" height="50">
                             </a>
+                        @else
+                            <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
+                                <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="50" height="50">
+                            </a>
                         @endif
                         <div class="ml-2 d-flex flex-column">
-                            <p class="mb-0">　{{ $data->user->name }}</p>
+                            <p class="mb-0">　<a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}"style= "text-decoration: none" >{{ $data->user->name }}</a></p>
                         </div>
                         <div class="d-flex justify-content-end flex-grow-1">
                             <p class="mb-0 text-secondary">{{ $data->updated_at }}</p>
@@ -21,8 +44,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6>{{ $data->title}}</h6>
+                        <h6>{{ $data->title}}（{{ $data->cardgame}}）</h6>
                         <h3>{{ $data->body}}</h3>
+                        @if($data->image_path !== null)
+                            <img src="{{ asset('storage/image').'/'.$data->image_path }}" width="150" height="150">
+                        @endif
                     </div>
                     <div class="card-footer py-1 d-flex justify-content-end bg-white">
                         @if($data->user_id == Auth::id())
@@ -55,4 +81,8 @@
         
     </div>
 </div>
+
+<!-- <div class="col-md-4">
+                <a href="{{ action('App\Http\Controllers\Admin\PostController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+            </div> -->
 @endsection
