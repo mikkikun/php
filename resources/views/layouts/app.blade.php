@@ -52,7 +52,7 @@
                                 </li>
                             @endif
                         @else
-                        <a class="navbar-brand" href="{{ route('create')}}">{{ __('投稿') }}</a> 
+                        <a class="navbar-brand" href="{{ route('create' , [Auth::user()->id])}}">{{ __('投稿') }}</a> 
                             <a class="navbar-brand" href="{{ route('top')}}">{{ __('みんなの投稿') }}</a> 
                             <a class="navbar-brand" href="{{ route('follow_pose')}}">{{ __('フォロー中の投稿') }}</a> 
                             <li class="nav-item dropdown">

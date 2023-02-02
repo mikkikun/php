@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <tr>
                 <td class = ""></td>
                 <td class = "">{{ $posts->updated_at }}</td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
 
@@ -17,25 +18,26 @@ class PostController extends Controller
 
     public function add()
     {
-        return view('admin.post.create');
+        $users = User::find(Auth::id());
+        return view('admin.post.create',['users' => $users]);
     }
 
     public function create(Request $request)
     {
-        $this->validate($request, Post::$rules);
-        $post = new Post;
-        $post->user_id = Auth::id();
+        // $this->validate($request, Post::$rules);
+        $posts = new Post;
+        $posts->user_id = Auth::id();
         $form = $request->all();
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
-            $post->image_path = basename($path);
+            $posts->image_path = basename($path);
         } else {
-            $post->image_path = null;
+            $posts->image_path = null;
         }
         unset($form['_token']);
         unset($form['image']);
-        $post->fill($form);
-        $post->save();
+        $posts->fill($form);
+        $posts->save();
         return redirect('admin/post/index');
     }
 
@@ -52,37 +54,38 @@ class PostController extends Controller
 
     public function edit(Request $request)
     {
-        $post = Post::find($request->id);
-        if (empty($post)) {
+        $users = User::find(Auth::id());
+        $posts = Post::find($request->id);
+        if (empty($posts)) {
         abort(404);    
         }
-        return view('admin.post.edit', ['post_form' => $post]);
+        return view('admin.post.edit', ['post_form' => $posts , 'users' => $users]);
     }
-
 
     public function update(Request $request)
     {
-        $this->validate($request, Post::$rules);
-        $post = Post::find($request->id);
+        // $this->validate($request, Post::$rules);
+        $posts = new Post;
+        $posts = Post::find($request->id);
         $post_form = $request->all();
         if (isset($post_form['image'])) {
             $path = $request->file('image')->store('public/image');
-            $post->image_path = basename($path);
+            $posts->image_path = basename($path);
             unset($post_form['image']);
         } elseif (0 == strcmp($request->remove, 'true')) {
-            $post->image_path = null;
+            $posts->image_path = null;
         }
         unset($post_form['_token']);
         unset($post_form['remove']);
-        $post->fill($post_form)->save();
+        $posts->fill($post_form)->save();
         return redirect('admin/post/index');
     }
 
     public function delete(Request $request)
     {
-        $post = new Post;
-        $post = Post::find($request->id);
-        $post->delete();
+        $posts = new Post;
+        $posts = Post::find($request->id);
+        $posts->delete();
         return redirect('admin/post/index');
     }
 

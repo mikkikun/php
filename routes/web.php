@@ -27,7 +27,6 @@ Auth::routes();
 Route::get('post/index', [App\Http\Controllers\Admin\PostController::class, 'home'])->name('admin/post/index');
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('post/create', [PostController::class, 'add'])->middleware('auth');
     Route::get('post/create', [PostController::class, 'add'])->middleware('auth')->name('create');
     Route::post('post/create', [PostController::class, 'create'])->middleware('auth');
     Route::get('post/index', [PostController::class, 'index'])->middleware('auth'); 
