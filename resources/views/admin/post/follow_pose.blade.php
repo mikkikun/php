@@ -67,7 +67,7 @@
                         @endif 
                         　
                         <div class="mr-3 d-flex align-items-center">
-                            <a href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['id' => $data->id]) }}"><i class="far fa-comment fa-fw"></i>コメント{{ count($data->comments) }}</a>
+                            <a href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['post_id' => $data->id, 'user_id' => $data->user->id]) }}"><i class="far fa-comment fa-fw"></i>コメント{{ count($data->comments) }}</a>
                         </div>
                         　
                         <div class="d-flex align-items-center">

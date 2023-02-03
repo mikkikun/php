@@ -47,7 +47,7 @@ class PostController extends Controller
         if ($cond_title != '') {
             $posts = Post::where('cardgame', $cond_title)->latest()->get();
         } else {
-            $posts = Post::all()->sortByDesc('created_at');
+            $posts = Post::all()->sortByDesc('updated_at');
         }
         return view('admin.post.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -65,7 +65,6 @@ class PostController extends Controller
     public function update(Request $request)
     {
         // $this->validate($request, Post::$rules);
-        $posts = new Post;
         $posts = Post::find($request->id);
         $post_form = $request->all();
         if (isset($post_form['image'])) {
@@ -93,9 +92,9 @@ class PostController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Post::where('title', $cond_title)->get();
+            $posts = Post::where('title', $cond_title)->latest()->get();
         } else {
-            $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+            $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest('updated_at')->get();
         }
         return view('admin.post.follow_pose', ['posts' => $posts, 'cond_title' => $cond_title]);
     }

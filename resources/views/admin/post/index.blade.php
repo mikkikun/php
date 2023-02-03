@@ -57,17 +57,17 @@
                             <div class="mr-3 d-flex align-items-center">
                                 <a href="{{ action('App\Http\Controllers\Admin\PostController@edit', ['id' => $data->id]) }}"><i class="far fa-comment fa-fw"></i>編集</a>
                             </div>
-                            　
-                            <div class="mr-3 d-flex align-items-center">
-                                <form method="POST" action="{{ action('App\Http\Controllers\Admin\PostController@delete', ['id' => $data->id]) }}" class="mb-0">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="dropdown-item del-btn" style="color:#FF0000; text-decoration:underline; ">削除</button>
-                                </form>
-                            </div>
+                                　
+                                <div class="mr-3 d-flex align-items-center">
+                                    <form method="POST" action="{{ action('App\Http\Controllers\Admin\PostController@delete', ['id' => $data->id]) }}" class="mb-0">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="dropdown-item del-btn" style="color:#FF0000; text-decoration:underline; ">削除</button>
+                                    </form>
+                                </div>
                         @endif 
                         　
                         <div class="mr-3 d-flex align-items-center">
-                            <a href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['id' => $data->id]) }}"><i class="far fa-comment fa-fw"></i>コメント{{ count($data->comments) }}</a>
+                            <a href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['post_id' => $data->id, 'user_id' => $data->user->id]) }}"><i class="far fa-comment fa-fw"></i>コメント{{ count($data->comments) }}</a>
                         </div>
                         　
                         <div class="d-flex align-items-center">

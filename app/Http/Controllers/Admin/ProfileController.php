@@ -73,6 +73,7 @@ class ProfileController extends Controller
 
     public function userpage(Request $request)
     {
+        
         $users = User::find($request->id);
         $posts = Post::where('user_id', $request->id)->get();
         return view('admin.profile.userpage', ['posts' => $posts,'users' => $users]);

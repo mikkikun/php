@@ -13,11 +13,13 @@ class CommentsController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::find($request->id);
-        $posts = Post::find($request->id);
-        $comments = Comment::query()->whereIn('post_id', Post::find($request->id)->comments()->pluck('post_id'))->get();
+        $posts = Post::find($request->post_id);
+        // dd($request->post_id);
+        $users = User::find($request->user_id);
+        // dd($users);
+        $comments = Comment::query()->whereIn('post_id', Post::find($request->post_id)->comments()->pluck('post_id'))->get();
         
-        return view('admin.comment.index', ['comments' => $comments, 'posts' => $posts,'users' => $users]);
+        return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 
     public function create(Request $request)
@@ -26,6 +28,7 @@ class CommentsController extends Controller
         $comments->user_id = Auth::id();
         $comments->post_id = $request->id;
         $comments->body = $request->body;
+        
         $form = $request->all();
         if (isset($form['image_path'])) {
             $path = $request->file('image_path')->store('public/image');
