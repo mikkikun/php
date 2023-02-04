@@ -63,7 +63,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     
-                                    <a class="dropdown-item" href="{{ route('mypage' , [Auth::user()->id]) }}">
+                                    <a class="dropdown-item" href="{{ route('mypage' , ['id' =>Auth::user()->id]) }}">
                                         {{ __('マイページ') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('profile-edit' , [Auth::user()->id]) }}">
