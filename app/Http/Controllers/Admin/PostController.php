@@ -85,14 +85,14 @@ class PostController extends Controller
         $posts = new Post;
         $posts = Post::find($request->id);
         $posts->delete();
-        return redirect('admin/post/index');
+        return back();
     }
 
     public function follow_pose(Request $request)
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Post::where('title', $cond_title)->latest()->get();
+            $posts = Post::where('cardgame', $cond_title)->latest()->get();
         } else {
             $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest('updated_at')->get();
         }

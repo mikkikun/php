@@ -55,7 +55,9 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::get('comment/index', [CommentsController::class, 'index'])->middleware('auth'); 
     Route::post('comment/index', [CommentsController::class, 'create'])->middleware('auth');
-    
+    Route::get('comment/edit', [CommentsController::class, 'edit'])->middleware('auth'); 
+    Route::post('comment/edit', [CommentsController::class, 'update'])->middleware('auth');
+    Route::delete('comment/index', [CommentsController::class, 'delete'])->middleware('auth');
     
     
     
