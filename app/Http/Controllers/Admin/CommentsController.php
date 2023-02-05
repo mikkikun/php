@@ -58,18 +58,20 @@ class CommentsController extends Controller
         $users = User::find($request->user_id);
         $posts = Post::find($request->post_id);
         
-        // $comment_form = $request->all();
-        // $comments->body = $request->body;
-        // if (isset($comment_form['image'])) {
-        //     $path = $request->file('image')->store('public/image');
-        //     $comment->image_path = basename($path);
-        //     unset($comment_form['image']);
-        // } elseif (0 == strcmp($request->remove, 'true')) {
-        //     $comment->image_path = null;
-        // }
-        // $comments->save();
+        $comment_form = $request->all();
+        $comments->body = $request->body;
+        if (isset($comment_form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $comments->image_path = basename($path);
+            unset($comment_form['image']);
+        } elseif (0 == strcmp($request->remove, 'true')) {
+            $comments->image_path = null;
+        }
+        $comments->save();
 
-        return view('admin.comment.index',['comments' => $comments, 'users' => $users, 'posts' => $posts]);
+        // return view('admin.post.index');
+        return redirect('admin/post/index');
+        // ,['comments' => $comments, 'users' => $users, 'posts' => $posts]
     }
 
     public function delete(Request $request)

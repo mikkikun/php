@@ -29,11 +29,10 @@ class ProfileController extends Controller
         if($request->profile !== null) {
             $users->profile = $request->profile;
         }
-        
-        if (isset($users_form['profile_image'])) {
-            $path = $request->file('profile_image')->store('public/profile_image');
+        if (isset($users_form['image'])) {
+            $path = $request->file('image')->store('public/profile_image');
             $users->profile_image = basename($path);
-            unset($users_form['profile_image']);
+            unset($users_form['image']);
         } elseif (0 == strcmp($request->remove, 'true')) {
             $users->profile_image = null;
         }

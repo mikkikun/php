@@ -59,7 +59,11 @@
                                 <span></span>
                             </div>
                         </div>
+                        
                     </div>
+                </div>
+                <div class="mt-5 d-flex flex-column" style= "margin:20px;">
+                    <h5 class="mb-0 font-weight-bold">{{ $users->profile }}</h5>
                 </div>
             </div>
         </div>
