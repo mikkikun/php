@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">投稿編集ページ</div>
+                <div class="card-header">コメント編集ページ</div>
                 <div class="card-body">
                     <form method="POST" action="{{ action('App\Http\Controllers\Admin\CommentsController@update' , ['comment_form' => $comment_form ,'post_id' => $post_id , 'user_id' => $user_id]) }}" enctype="multipart/form-data">
                         @csrf

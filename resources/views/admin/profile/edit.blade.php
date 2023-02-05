@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
+
+
+
+
+
 <form action="{{ action('App\Http\Controllers\Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
     @if (count($errors) > 0)
         <ul>

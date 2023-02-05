@@ -17,7 +17,7 @@
                             </a>
                         @endif
                         <div class="mt-3 d-flex flex-column">
-                            <h4 class="mb-0 font-weight-bold">{{ $users->name }}</h4>
+                            <h4 class="mb-0 font-weight-bold"><a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}"style= "text-decoration: none" >{{ $users->name }}</a></h4>
                         </div>
                     </div>
                     <div class="p-3 d-flex flex-column justify-content-between">
@@ -39,7 +39,6 @@
                                             <button type="submit" class="btn btn-primary">フォローする</button>
                                         </form>
                                     @endif
-
                                     @if (Auth::user()->isFollowed($users->id))
                                         <span class="mt-2 px-1 bg-secondary text-light">フォローされています</span>
                                     @endif
@@ -64,56 +63,59 @@
                 </div>
             </div>
         </div>
-        
-            
+        @if (isset($posts))
+            @foreach ($posts as $post)
                 <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="" class="rounded-circle" width="50" height="50">
+                            @if($users->profile_image != null)
+                                <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
+                                    <img src="{{ asset('storage/profile_image').'/'.$users->profile_image }}" class="rounded-circle" width="50" height="50">
+                                </a>
+                            @else
+                                <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
+                                    <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="50" height="50">
+                                </a>
+                            @endif
+                            　
                             <div class="ml-2 d-flex flex-column flex-grow-1">
-                                <p class="mb-0"></p>
-                                <a href="" class="text-secondary"></a>
+                                <p class="mb-0"><a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}"style= "text-decoration: none" >{{ $post->user->name }}</a></p>
                             </div>
                             <div class="d-flex justify-content-end flex-grow-1">
-                                <p class="mb-0 text-secondary"></p>
+                                <p class="mb-0 text-secondary">{{ $post->updated_at->format('Y-m-d H:i') }}</p>
                             </div>
                         </div>
                         <div class="card-body">
-                            
+                            <h6>{{ $post->title}}（{{ $post->cardgame}}）</h6>
+                            <h3>{{ $post->body }}</h3>    
                         </div>
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
-                            
-                                <div class="dropdown mr-3 d-flex align-items-center">
-                                    <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-fw"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <form method="POST" action="" class="mb-0">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <a href="" class="dropdown-item">編集</a>
-                                            <button type="submit" class="dropdown-item del-btn">削除</button>
+                            @if($post->user_id == Auth::id())
+                                <div class="mr-3 d-flex align-items-center">
+                                    <a href="{{ action('App\Http\Controllers\Admin\PostController@edit', ['id' => $post->id]) }}"><i class="far fa-comment fa-fw"></i>編集</a>
+                                </div>
+                                    　
+                                    <div class="mr-3 d-flex align-items-center">
+                                        <form method="POST" action="{{ action('App\Http\Controllers\Admin\PostController@delete', ['id' => $post->id]) }}" class="mb-0">
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="dropdown-item del-btn" style="color:#FF0000; text-decoration:underline; ">削除</button>
                                         </form>
                                     </div>
-                                </div>
-                            
+                            @endif 
+                            　
                             <div class="mr-3 d-flex align-items-center">
-                                <a href="#"><i class="far fa-comment fa-fw"></i></a>
-                                <p class="mb-0 text-secondary"></p>
+                                <a href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['post_id' => $post->id, 'user_id' => $post->user->id]) }}"><i class="far fa-comment fa-fw"></i>コメント{{ count($post->comments) }}</a>
                             </div>
+                            　
                             <div class="d-flex align-items-center">
                                 <a href="#"><i class="far fa-comment fa-fw"></i></a>
-                                <p class="mb-0 text-secondary"></p>
+                                <p class="mb-0 text-secondary">いいね</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            
-        
-    </div>
-    <div class="my-4 d-flex justify-content-center">
-        
+            @endforeach
+        @endif
     </div>
 </div>
 

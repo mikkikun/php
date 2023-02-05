@@ -64,12 +64,6 @@ class ProfileController extends Controller
         return redirect('/');
     }
 
-    public function index(Request $request)
-    {
-        $users = User::find(Auth::id());
-        $posts = Post::where('user_id', \Auth::user()->id)->get();
-        return view('admin.profile.mypage', ['posts' => $posts,'users' => $users]);
-    }
 
     public function userpage(Request $request)
     {

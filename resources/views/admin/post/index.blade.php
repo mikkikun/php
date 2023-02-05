@@ -42,7 +42,6 @@
                         </div>
                         <div class="d-flex justify-content-end flex-grow-1">
                             <p class="mb-0 text-secondary">{{ $data->updated_at }}</p>
-                            
                         </div>
                     </div>
                     <div class="card-body">
