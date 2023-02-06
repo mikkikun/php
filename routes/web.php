@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Admin\FavoritesController;
 
 
 
@@ -35,7 +36,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');
     Route::get('post/index', [PostController::class, 'index'])->middleware('auth')->name('top'); 
     Route::get('post/follow_pose', [PostController::class, 'follow_pose'])->middleware('auth')->name('follow_pose');
+    Route::post('post/index/favorites', [FavoritesController::class, 'store'])->middleware('auth')->name('favorites');
+    Route::delete('post/index/favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
     
+
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
     Route::put('profile/edit', [ProfileController::class, 'update'])->middleware('auth');
     Route::get('profile/delte', [ProfileController::class, 'deletepage'])->middleware('auth')->name('profile-delete-page');
