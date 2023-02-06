@@ -75,7 +75,6 @@ class ProfileController extends Controller
     {
         
         $follower = auth()->user();
-        
         $id = $request->id;
        // フォローしているか
         $is_following = $follower->isFollowing($id);
@@ -102,27 +101,20 @@ class ProfileController extends Controller
 
     public function follow_page(Request $request)
     {
-        $users = User::query()->whereIn('id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
-        return view('admin.profile.follow', ['users' => $users]);
-    }
-
-    public function follower_page(Request $request)
-    {
-        $users = User::query()->whereIn('id', Auth::user()->followers()->pluck('following_id'))->latest()->get();
-        return view('admin.profile.follower', ['users' => $users]);
-    }
-
-    public function user_follow_page(Request $request)
-    {
+        // $user = new User;
+        // $all_users = $user->getAllUsers(auth()->user()->id);
         $id = $request->id;
         $users = User::query()->whereIn('id', User::find($id)->follows()->pluck('followed_id'))->latest()->get();
         return view('admin.profile.follow', ['users' => $users]);
     }
 
-    public function user_follower_page(Request $request)
+    public function follower_page(Request $request)
     {
+        // $user = new User;
+        // $all_users = $user->getAllUsers(auth()->user()->id);
         $id = $request->id;
         $users = User::query()->whereIn('id', User::find($id)->followers()->pluck('following_id'))->latest()->get();
-        return view('admin.profile.follower', ['users' => $users]);
+        return view('admin.profile.follow', ['users' => $users]);
     }
+
 }

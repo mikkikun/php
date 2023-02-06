@@ -89,4 +89,9 @@ class User extends Authenticatable
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
 
+    // public function getAllUsers(Int $user_id)
+    // {
+    //     return $this->Where('id', '<>', $user_id)->paginate(5);
+    // }
+
 }

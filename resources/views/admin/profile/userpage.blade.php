@@ -47,12 +47,11 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <div class="p-2 d-flex flex-column align-items-center">
-                                <p class="font-weight-bold">ツイート数</p>
-                                <span></span>
+                                <p class="font-weight-bold">投稿数</p>
+                                <span>{{ count($posts) }}</span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
                                 <p class="font-weight-bold">フォロー数</p>
-                                <span></span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
                                 <p class="font-weight-bold">フォロワー数</p>
@@ -141,8 +140,8 @@
             </tr>
             <tr class = "">
                 <td class = "">{{ $users->profile}}</td>
-                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follow_page') }}">フォロー</a></td>
-                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@user_follower_page') }}">フォロワー</a></td>
+                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follow_page',['id' => $users->id]) }}">フォロー</a></td>
+                <td class = ""><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follower_page',['id' => $users->id]) }}">フォロワー</a></td>
             </tr>
             </table>
 
