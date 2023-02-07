@@ -86,7 +86,7 @@
                         <div class="card-footer py-1 d-flex justify-content-end bg-white">
                             @if($comment->user_id == Auth::user()->id)
                                 <div class="mr-3 d-flex align-items-center">
-                                    <a href="{{ action('App\Http\Controllers\Admin\CommentsController@edit', ['id' => $comment->id ,'user_id' => $users->id,'post_id' => $posts->id ]) }}"><i class="far fa-comment fa-fw"></i>編集</a>
+                                    <a href="{{ action('App\Http\Controllers\Admin\CommentsController@edit', ['comments' => $comment ,'posts' => $posts , 'users' => $users]) }}"><i class="far fa-comment fa-fw"></i>編集</a>
                                 </div>
                                 　
                                 <div class="mr-3 d-flex align-items-center">

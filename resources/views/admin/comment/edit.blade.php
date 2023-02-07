@@ -7,27 +7,26 @@
             <div class="card">
                 <div class="card-header">コメント編集ページ</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ action('App\Http\Controllers\Admin\CommentsController@update' , ['comment_form' => $comment_form ,'post_id' => $post_id , 'user_id' => $user_id]) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ action('App\Http\Controllers\Admin\CommentsController@update', ['comments' => $comments ,'posts' => $posts , 'users' => $users]) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row mb-0">
                             <div class="col-md-12 p-3 w-100 d-flex">
-                            
-                                @if($comment_form->profile_image !== null)
-                                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comment_form->user->id]) }}">
-                                        <img src="{{ asset('storage/profile_image').'/'.$comments->profile_image }}" class="rounded-circle" width="50" height="50">
+                                @if(Auth::user()->profile_image !== null)
+                                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comments->user->id]) }}">
+                                        <img src="{{ asset('storage/profile_image').'/'.Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
                                     </a>
                                 @else
-                                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comment_form->user->id]) }}">
+                                    <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comments->user->id]) }}">
                                         <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="50" height="50">
                                     </a>
                                 @endif
                                 <div class="ml-2 d-flex flex-column">
-                                    <p class="mb-0">　<a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comment_form->user->id]) }}"style= "text-decoration: none" >{{ $comment_form->user->name }}</a></p>
+                                    <p class="mb-0">　<a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comments->user->id]) }}"style= "text-decoration: none" >{{ $comments->user->name }}</a></p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <label  style= "font-size:20px;">本文</label>
-                                <textarea class="form-control @error('text') is-invalid @enderror" name="body" required autocomplete="text" rows="4">{{ $comment_form->body }}</textarea>
+                                <textarea class="form-control @error('text') is-invalid @enderror" name="body" required autocomplete="text" rows="4">{{ $comments->body }}</textarea>
                                 @error('text')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,14 +39,14 @@
                                 <p class="mb-4 text-danger">255文字以内</p>
                                 <label>画像</label>
                                 <input type="file" class="" name="image" >
-                                @if($comment_form->image_path !== null)
-                                    <p>設定中:<img src="{{ asset('storage/image').'/'.$comment_form->image_path }}" width="150" height="150">
+                                @if($comments->image_path !== null)
+                                    <p>設定中:<img src="{{ asset('storage/image').'/'.$comments->image_path }}" width="150" height="150">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
                                         </label>
                                     </p>
                                 @endif
-                                <input type="hidden" name="id" value="{{ $comment_form->id }}">
+                                <input type="hidden" name="id" value="{{ $comments->id }}">
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-primary">
                                     投稿する
@@ -74,16 +73,16 @@
 
 
     <label>本文</label>
-    <textarea class="" name="body" rows="20">{{ $comment_form->body }}</textarea>
+    <textarea class="" name="body" rows="20">{{ $comments->body }}</textarea>
 
     <label>画像</label>
     <input type="file" class="" name="image">
-    設定中: {{ $comment_form->image_path }}
+    設定中: {{ $comments->image_path }}
     <label class="form-check-label">
         <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
     </label>
 
-    <input type="hidden" name="id" value="{{ $comment_form->id }}">
+    <input type="hidden" name="id" value="{{ $comments->id }}">
     {{ csrf_field() }}
     <input type="submit" class="btn btn-primary" value="更新">
 

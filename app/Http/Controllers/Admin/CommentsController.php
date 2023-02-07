@@ -15,7 +15,7 @@ class CommentsController extends Controller
     {
         $posts = Post::find($request->post_id);
         $users = User::find($request->user_id);
-        $comments = Comment::query()->whereIn('post_id', Post::find($request->post_id)->comments()->pluck('post_id'))->latest('updated_at')->get();
+        $comments = Comment::query()->whereIn('post_id', Post::find($request->post_id)->comments()->pluck('post_id'))->latest('created_at')->get();
         return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 
@@ -41,23 +41,22 @@ class CommentsController extends Controller
 
     public function edit(Request $request)
     {
-        $comments = Comment::find($request->id);
-        $users = User::find($request->user_id);
-        $posts = Post::find($request->post_id);
+        $comments = Comment::find($request->comments);
+        $users = User::find($request->users);
+        $posts = Post::find($request->posts);
         if (empty($comments)) {
         abort(404);    
         }
-        return view('admin.comment.edit', ['comment_form' => $comments, 'user_id' => $users, 'post_id' => $posts]);
+        return view('admin.comment.edit', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 
     public function update(Request $request)
     {
         
         // $this->validate($request, Comment::$rules);
-        $comments = Comment::find($request->comment_form);
-        $users = User::find($request->user_id);
-        $posts = Post::find($request->post_id);
-        
+        $users = User::find($request->users);
+        $posts = Post::find($request->posts);
+        $comments = Comment::find($request->comments);
         $comment_form = $request->all();
         $comments->body = $request->body;
         if (isset($comment_form['image'])) {
@@ -68,10 +67,11 @@ class CommentsController extends Controller
             $comments->image_path = null;
         }
         $comments->save();
-
-        // return view('admin.post.index');
-        return redirect('admin/post/index');
-        // ,['comments' => $comments, 'users' => $users, 'posts' => $posts]
+        $comments = Comment::query()
+                    ->whereIn('post_id', $posts->comments()->pluck('post_id'))
+                    ->latest('created_at')
+                    ->get();
+        return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 
     public function delete(Request $request)
