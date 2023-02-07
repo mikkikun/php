@@ -37,7 +37,8 @@ class ProfileController extends Controller
             $users->profile_image = null;
         }
         $users->save();
-        return redirect('admin/post/index');
+        $posts = Post::where('user_id', $request->id)->get();
+        return view('admin.profile.userpage', ['posts' => $posts,'users' => $users]);
     }
 
     public function deletepage(Request $request)
