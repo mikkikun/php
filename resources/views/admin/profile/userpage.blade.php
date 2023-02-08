@@ -112,8 +112,22 @@
                             </div>
                             　
                             <div class="d-flex align-items-center">
-                                <a href="#"><i class="far fa-comment fa-fw"></i></a>
-                                <p class="mb-0 text-secondary">いいね</p>
+                                @if (!in_array(Auth::user()->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
+                                    <form method="POST" action="{{ route('favorites') }}" class="mb-0">
+                                        @csrf
+
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"style="text-decoration:underline;">いいね</i></button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ route('unfavorites', ['post_id' => $post->id, 'user_id' => $post->user->id]) }}" class="mb-0">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i>いいね解除</button>
+                                    </form>
+                                @endif
+                                <p class="mb-0 text-secondary" >{{ count($post->favorites) }}</p>
                             </div>
                         </div>
                     </div>
@@ -121,5 +135,9 @@
             @endforeach
         @endif
     </div>
+</div>
+
+<div class="mr-3 d-flex align-items-center">
+    <a href="{{ action('App\Http\Controllers\Admin\ChatController@index',['user_id' => $users->id]) }}"><i class="far fa-comment fa-fw"></i>チャット</a>
 </div>
 @endsection

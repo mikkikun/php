@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FavoritesController;
+use App\Http\Controllers\Admin\ChatController;
 
 
 
@@ -58,4 +59,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('comment/edit', [CommentsController::class, 'update'])->middleware('auth');
     Route::delete('comment/index', [CommentsController::class, 'delete'])->middleware('auth');
 
+
+    Route::get('chat/chat', [ChatController::class, 'index'])->name('add');
+    Route::post('chat/chat', [ChatController::class, 'add'])->name('add');
 });

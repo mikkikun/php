@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFavoritesTable extends Migration
+class CreateChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateFavoritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('favorites', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id')->comment('ユーザID');
-            $table->unsignedInteger('post_id')->comment('投稿ID');
+        Schema::create('chats', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('login_id')->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->string('comment');
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('chats');
     }
 }

@@ -70,7 +70,7 @@
                         </div>
                         　
                         <div class="d-flex align-items-center">
-                            @if (!in_array($data->user->id, array_column($data->favorites->toArray(), 'user_id'), TRUE))
+                            @if (!in_array(Auth::user()->id, array_column($data->favorites->toArray(), 'user_id'), TRUE))
                                 <form method="POST" action="{{ route('favorites') }}" class="mb-0">
                                     @csrf
 
@@ -78,7 +78,7 @@
                                     <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"style="text-decoration:underline;">いいね</i></button>
                                 </form>
                             @else
-                                <form method="POST" action="{{ route('unfavorites', ['post_id' => $data->id]) }}" class="mb-0">
+                                <form method="POST" action="{{ route('unfavorites', ['post_id' => $data->id, 'user_id' => $data->user->id]) }}" class="mb-0">
                                     @csrf
                                     @method('DELETE')
 

@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Post;
 use App\Models\follow;
+use App\Models\Chat;
 
 
 class User extends Authenticatable
@@ -94,6 +95,9 @@ class User extends Authenticatable
     //     return $this->Where('id', '<>', $user_id)->paginate(5);
     // }
 
-    
+    public function chats()
+    {
+        return $this->hasMany('App\Models\Chat');
+    }
 
 }

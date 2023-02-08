@@ -10,13 +10,12 @@ class Favorite extends Model
 {
     public $timestamps = false;
 
-    // いいねしているかどうかの判定処理
     public function isFavorite($user_id, $post_id) 
     {
-        return (boolean) $this->where('user_id', $user_id)->where('post_id', $post_id)->first();
+        return $this->where('user_id', $user_id)->where('post_id', $post_id)->first();
     }
 
-    public function storeFavorite($user_id, $post_id)
+    public function storeFavorite($user_id,  $post_id)
     {
         $this->user_id = $user_id;
         $this->post_id = $post_id;
@@ -25,8 +24,35 @@ class Favorite extends Model
         return;
     }
 
-    public function destroyFavorite($favorite_id)
+    public function destroyFavorite($user_id,  $post_id)
     {
-        return $this->where('id', $favorite_id)->delete();
+
+        $this->user_id = $user_id;
+        $this->post_id = $post_id;
+        $this->where('user_id', $user_id)->where('post_id', $post_id)->delete();
+        return;
     }
+    // いいねしているかどうかの判定処理
+    // public function isFavorite($user_id, $post_id) 
+    // {
+    //     return (boolean) $this->where('user_id', $user_id)->where('post_id', $post_id)->first();
+    // }
+    
+
+    // public function storeFavorite($user_id, $post_id)
+    // {
+    //     $this->user_id = $user_id;
+    //     $this->post_id = $post_id;
+    //     $this->save();
+    //     return;
+    // }
+
+    // public function destroyFavorite($user_id, $post_id)
+    // {
+    //     $this->user_id = $user_id;
+    //     $this->post_id = $post_id;
+    //     $this->delete();
+    //     return;
+    //     // $this->where('id', $user_id, $post_id)->
+    // }
 }
