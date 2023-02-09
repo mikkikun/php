@@ -137,7 +137,6 @@
                     <div class="py-3">
                         <form method="POST" action="{{ action('App\Http\Controllers\Admin\CommentsController@create', ['id' => $posts->id]) }}" enctype="multipart/form-data">
                             @csrf
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 p-3 w-100 d-flex">
                                     @if(Auth::user()->profile_image !== null)

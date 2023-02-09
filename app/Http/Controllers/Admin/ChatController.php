@@ -21,7 +21,20 @@ class ChatController extends Controller
     public function add(Request $request)
     {
         $chats = new Chat;
+        
+        $form = $request->all();
         $chats->comment = $request->comment;
+        $chats->my_id = auth()->user()->id;
+        $chats->user_id = $request->id;
+        if (isset($form['image'])) {
+            $path = $request->file('image')->store('public/chat');
+            $chats->image_path = basename($path);
+        } else {
+            $chats->image_path = null;
+        }
+        unset($form['_token']);
+        unset($form['image_path']);
+        $chats->save();
         // Chat::create([
         //   'user_id' => $users->id,
         //   'name' => $users->name,
