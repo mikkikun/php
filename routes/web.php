@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('post/follow_pose', [PostController::class, 'follow_pose'])->middleware('auth')->name('follow_pose');
     Route::post('post/index/favorites', [FavoritesController::class, 'store'])->middleware('auth')->name('favorites');
     Route::delete('post/index/favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
+    Route::post('favorites', [FavoritesController::class, 'store'])->middleware('auth')->name('favorites');
+    Route::delete('favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
     
 
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
@@ -58,6 +60,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('comment/edit', [CommentsController::class, 'edit'])->middleware('auth'); 
     Route::post('comment/edit', [CommentsController::class, 'update'])->middleware('auth');
     Route::delete('comment/index', [CommentsController::class, 'delete'])->middleware('auth');
+    Route::post('favorites_comment', [FavoritesController::class, 'comment_store'])->middleware('auth')->name('favorites_comment');
+    Route::delete('favorites_comment', [FavoritesController::class, 'comment_destroy'])->middleware('auth')->name('unfavorites_comment');
 
 
     Route::get('chat/chat', [ChatController::class, 'index'])->name('add');

@@ -47,7 +47,6 @@
                         @if (!in_array(Auth::user()->id, array_column($posts->favorites->toArray(), 'user_id'), TRUE))
                             <form method="POST" action="{{ route('favorites') }}" class="mb-0">
                                 @csrf
-
                                 <input type="hidden" name="post_id" value="{{ $posts->id }}">
                                 <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"style="text-decoration:underline;">いいね</i></button>
                             </form>
@@ -112,10 +111,21 @@
                             @endif
                             　
                             <div class="d-flex align-items-center">
-                                <button type="" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"></i></button>
-                                <p class="mb-0 text-secondary">いいね</p>
+                                @if (!in_array(Auth::user()->id, array_column($comment->favorites_comments->toArray(), 'user_id'), TRUE))
+                                    <form method="POST" action="{{ route('favorites_comment') }}" class="mb-0">
+                                        @csrf
+                                        <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                        <button type="submit" class="btn p-0 border-0 text-primary"><i class="far fa-heart fa-fw"style="text-decoration:underline;">いいね</i></button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="{{ route('unfavorites_comment', ['comment_id' => $comment->id, 'user_id' => $comment->user->id]) }}" class="mb-0">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i>いいね解除</button>
+                                    </form>
+                                @endif
+                                <p class="mb-0 text-secondary" >{{ count($comment->favorites_comments) }}</p>
                             </div>
-                        </div>
                     </li>
                     <p></p>
                 @empty
