@@ -66,29 +66,26 @@ class FavoritesController extends Controller
         }
         return back();
     }
-    // public function store(Request $request, Favorite $favorite)
-    // {
-    //     $user_id = auth()->user();
-    //     $post_id = $request->post_id;
-    //     $is_favorite = $favorite->isFavorite($user_id, $post_id);
-
-    //     if(!$is_favorite) {
-    //         $favorite->storeFavorite($user_id, $post_id);
-    //         return back();
-    //     }
-    //     return back();
-    // }
-
-    // public function destroy(Request $request, Favorite $favorite)
-    // {
-    //     $user_id = auth()->user()->id;
-    //     $post_id = $request->post_id;
-    //     $favorite_id = $favorite->id;
-    //     $is_favorite = $favorite->isFavorite($user_id, $post_id);
-    //     if($is_favorite) {
-    //         $favorite->destroyFavorite($favorite_id);
-    //         return back();
-    //     }
-    //     return back();
-    // }
+    public function favorite_page(Request $request)
+    {
+        
+        $id = $request->id;
+        $favorites = new Favorite;
+        $users = new User;
+        // dd($favorites);
+        $users = User::query()->whereIn('id', Favorite::find($id)->followers()->pluck('following_id'))->latest()->get();
+        $favorites = Favorite::where('post_id',$id)->get();
+        // $users = $favorites->user_id;
+        // $users = User::query()->whereIn('id', $favorites->user_id->pluck('id'))->latest()->get();
+        
+        // $favorites = Favorite::query()->whereIn('post_id', Post::find($id)->favorites()->pluck('post_id'));
+        // $posts = Post::where('user_id', $request->id)->get();
+        // $users = User::query()->whereIn('id', $favorites->user_id->pluck('id'))->latest()->get();
+        // $comments = Comment::query()
+        //             ->whereIn('post_id', $posts->comments()->pluck('post_id'))
+        //             ->latest('created_at')
+        //             ->get();
+        // $users = User::query()->whereIn('id', User::find($id)->followers()->pluck('following_id'))->latest()->get();
+        return view('admin.post.favorite', ['favorites' => $favorites]);
+    }
 }

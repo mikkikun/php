@@ -65,6 +65,10 @@
                             </div>
                         </div>
                     </form>
+                    <form methods="POST" action="{{ route('guestLogin') }}">
+                        @csrf
+                        <button>ゲストログインする</button>
+                    </form>
                 </div>
             </div>
         </div>

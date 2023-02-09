@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -42,4 +44,13 @@ class LoginController extends Controller
     {
         return '/admin/post/index';
     }
+
+    public function guest()
+    {
+        $guestUserId = 5; //ゲストユーザーのIDを１とする
+        $user = User::find($guestUserId);
+        Auth::login($user);
+  //ログイン後リダイレクトしたいところにリダイレクトするなどしてください
+    return redirect('/admin/post/index');
+}
 }

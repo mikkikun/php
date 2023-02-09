@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
+use App\Models\User;
 
 
 class Favorite extends Model
@@ -32,6 +33,9 @@ class Favorite extends Model
         $this->where('user_id', $user_id)->where('post_id', $post_id)->delete();
         return;
     }
-    
-    
+    //なぞ
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

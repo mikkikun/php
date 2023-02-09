@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Post;
 use App\Models\follow;
 use App\Models\Chat;
+use App\Models\favorite;
 
 
 class User extends Authenticatable
@@ -52,6 +53,8 @@ class User extends Authenticatable
         'name' => 'required'
     );
 
+    
+
     public function posts()
     {
         return $this->hasMany('App\Models\Post');
@@ -88,6 +91,11 @@ class User extends Authenticatable
     public function isFollowed($user_id)
     {
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
+    }
+    //かり
+    public function favorites()
+    {
+        return $this->hasMany('App\Models\Post');
     }
 
     // public function getAllUsers(Int $user_id)

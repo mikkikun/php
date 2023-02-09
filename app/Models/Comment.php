@@ -20,7 +20,7 @@ class Comment extends Model
      * @var array
      */
 
-     public static $rules = array(
+    public static $rules = array(
         'body' => 'required',
     );
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CommentsController;
@@ -27,6 +28,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('post/index', [App\Http\Controllers\Admin\PostController::class, 'home'])->name('admin/post/index');
+Route::get('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
+Route::post('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('post/create', [PostController::class, 'add'])->middleware('auth')->name('create');
@@ -37,10 +40,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');
     Route::get('post/index', [PostController::class, 'index'])->middleware('auth')->name('top'); 
     Route::get('post/follow_pose', [PostController::class, 'follow_pose'])->middleware('auth')->name('follow_pose');
-    Route::post('post/index/favorites', [FavoritesController::class, 'store'])->middleware('auth')->name('favorites');
-    Route::delete('post/index/favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
     Route::post('favorites', [FavoritesController::class, 'store'])->middleware('auth')->name('favorites');
     Route::delete('favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
+    Route::get('post/favorite', [FavoritesController::class, 'favorite_page'])->middleware('auth');
     
 
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
