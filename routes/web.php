@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('favorites', [FavoritesController::class, 'store'])->middleware('auth')->name('favorites');
     Route::delete('favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
     Route::get('post/favorite', [FavoritesController::class, 'favorite_page'])->middleware('auth');
+    Route::get('comment/favorite', [FavoritesController::class, 'comment_favorite_page'])->middleware('auth');
     
 
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 

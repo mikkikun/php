@@ -72,20 +72,17 @@ class FavoritesController extends Controller
         $id = $request->id;
         $favorites = new Favorite;
         $users = new User;
-        // dd($favorites);
-        // $users = User::query()->whereIn('id', Favorite::find($id)->followers()->pluck('following_id'))->latest()->get();
         $favorites = Favorite::where('post_id',$id)->get();
-        // $users = $favorites->user_id;
-        // $users = User::query()->whereIn('id', $favorites->user_id->pluck('id'))->latest()->get();
-        
-        // $favorites = Favorite::query()->whereIn('post_id', Post::find($id)->favorites()->pluck('post_id'));
-        // $posts = Post::where('user_id', $request->id)->get();
-        // $users = User::query()->whereIn('id', $favorites->user_id->pluck('id'))->latest()->get();
-        // $comments = Comment::query()
-        //             ->whereIn('post_id', $posts->comments()->pluck('post_id'))
-        //             ->latest('created_at')
-        //             ->get();
-        // $users = User::query()->whereIn('id', User::find($id)->followers()->pluck('following_id'))->latest()->get();
         return view('admin.post.favorite', ['favorites' => $favorites]);
+    }
+
+    public function comment_favorite_page(Request $request)
+    {
+        
+        $id = $request->id;
+        $favorites = new FavoriteComment;
+        $users = new User;
+        $favorites = FavoriteComment::where('comment_id',$id)->get();
+        return view('admin.comment.favorite', ['favorites' => $favorites]);
     }
 }

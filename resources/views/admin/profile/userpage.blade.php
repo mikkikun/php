@@ -127,7 +127,7 @@
                                         <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i>いいね解除</button>
                                     </form>
                                 @endif
-                                <p class="mb-0 text-secondary" >{{ count($post->favorites) }}</p>
+                                <p class="mb-0 text-secondary" ><a href="{{ action('App\Http\Controllers\Admin\FavoritesController@favorite_page',['id' => $post->id]) }}">{{ count($post->favorites) }}</a></p>
                             </div>
                         </div>
                     </div>

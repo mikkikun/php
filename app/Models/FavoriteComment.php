@@ -32,4 +32,8 @@ class FavoriteComment extends Model
         return;
     }
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

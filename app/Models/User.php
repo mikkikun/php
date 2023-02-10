@@ -98,6 +98,11 @@ class User extends Authenticatable
         return $this->hasMany(Favorite::class);
     }
 
+    public function favoritescomments()
+    {
+        return $this->hasMany(favoritescomment::class);
+    }
+
     // public function getAllUsers(Int $user_id)
     // {
     //     return $this->Where('id', '<>', $user_id)->paginate(5);
