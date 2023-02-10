@@ -67,5 +67,5 @@ Route::group(['prefix' => 'admin'], function() {
 
 
     Route::get('chat/chat', [ChatController::class, 'index'])->name('add');
-    Route::post('chat/chat', [ChatController::class, 'add'])->name('add');
+    Route::post('chat', [ChatController::class, 'add'])->name('add');
 });

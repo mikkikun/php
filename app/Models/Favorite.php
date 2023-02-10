@@ -36,6 +36,6 @@ class Favorite extends Model
     //なぞ
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 }

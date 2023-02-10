@@ -27,7 +27,7 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
-
+    //かり
     public function favorites()
     {
         return $this->hasMany(Favorite::class);

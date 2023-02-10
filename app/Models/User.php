@@ -95,7 +95,7 @@ class User extends Authenticatable
     //かり
     public function favorites()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany(Favorite::class);
     }
 
     // public function getAllUsers(Int $user_id)

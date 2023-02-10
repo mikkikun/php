@@ -73,7 +73,7 @@ class FavoritesController extends Controller
         $favorites = new Favorite;
         $users = new User;
         // dd($favorites);
-        $users = User::query()->whereIn('id', Favorite::find($id)->followers()->pluck('following_id'))->latest()->get();
+        // $users = User::query()->whereIn('id', Favorite::find($id)->followers()->pluck('following_id'))->latest()->get();
         $favorites = Favorite::where('post_id',$id)->get();
         // $users = $favorites->user_id;
         // $users = User::query()->whereIn('id', $favorites->user_id->pluck('id'))->latest()->get();

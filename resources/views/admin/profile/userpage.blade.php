@@ -52,7 +52,7 @@
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
                                 <p class="font-weight-bold">フォロー数</p>
-                                <span><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follow_page',['id' => $users->id]) }}">{{ count($users->followers) }}</a></span>
+                                <span><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follow_page',['id' => $users->id]) }}">{{ count($users->follows) }}</a></span>
                             </div>
                             <div class="p-2 d-flex flex-column align-items-center">
                                 <p class="font-weight-bold">フォロワー数</p>
