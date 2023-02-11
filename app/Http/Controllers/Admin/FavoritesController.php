@@ -71,7 +71,6 @@ class FavoritesController extends Controller
         
         $id = $request->id;
         $favorites = new Favorite;
-        $users = new User;
         $favorites = Favorite::where('post_id',$id)->get();
         return view('admin.post.favorite', ['favorites' => $favorites]);
     }
@@ -81,7 +80,6 @@ class FavoritesController extends Controller
         
         $id = $request->id;
         $favorites = new FavoriteComment;
-        $users = new User;
         $favorites = FavoriteComment::where('comment_id',$id)->get();
         return view('admin.comment.favorite', ['favorites' => $favorites]);
     }

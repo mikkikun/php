@@ -14,10 +14,14 @@ class ChatController extends Controller
     public function index(Request $request)
     {
         $my_id = auth()->user()->id;
-        $user_id = User::find($request->user_id);
-        $my_chats = Chat::where('my_id',$my_id)->get();
-        $user_chats = Chat::where('user_id',$user_id)->get();
-        return view('admin.chat.chat', ['my_chats' => $my_chats, 'user_chats' => $user_chats,'user_id' => $user_id]);
+        $users = User::find($request->user_id);
+        $user_id =$users->id;
+        // $chats = Chat::where('my_id',$my_id)->where('user_id',$user_id)->get();
+        $chats = Chat::where('my_id',$my_id)->where('user_id',$user_id)
+            ->orWhere(function($query) use($my_id, $user_id){
+            $query->where('user_id', $my_id)->where('my_id', $user_id);
+        })->get();
+        return view('admin.chat.chat', ['chats' => $chats,'users' => $users]);
     }
 
     public function add(Request $request)

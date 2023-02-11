@@ -110,7 +110,7 @@ class User extends Authenticatable
 
     public function chats()
     {
-        return $this->hasMany('App\Models\Chat');
+        return $this->hasMany(Chat::class);
     }
 
 }
