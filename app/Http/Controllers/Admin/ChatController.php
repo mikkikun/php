@@ -41,11 +41,15 @@ class ChatController extends Controller
         unset($form['_token']);
         unset($form['image_path']);
         $chats->save();
-        // Chat::create([
-        //   'user_id' => $users->id,
-        //   'name' => $users->name,
-        //   'chats' => $chats
-        // ]); 
         return back();
+    }
+
+    public function list(Request $request)
+    {
+        $my_id = auth()->user()->id;
+        $user_id = 
+        $chats = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
+        ->groupBy('user_id')->where('user_id', '!==', 'my_id')->get('user_id');
+        return view('admin.chat.list', ['chats' => $chats,'user_id' => $user_id]);
     }
 }

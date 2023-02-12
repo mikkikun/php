@@ -67,6 +67,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('favorites_comment', [FavoritesController::class, 'comment_destroy'])->middleware('auth')->name('unfavorites_comment');
 
 
-    Route::get('chat/chat', [ChatController::class, 'index'])->name('add');
-    Route::post('chat', [ChatController::class, 'add'])->name('add');
+    Route::get('chat/chat', [ChatController::class, 'index'])->middleware('auth');
+    Route::post('chat', [ChatController::class, 'add'])->middleware('auth');
+    Route::get('chat/list', [ChatController::class, 'list'])->middleware('auth')->name('chat-list');
 });
+

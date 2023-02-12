@@ -67,10 +67,13 @@
                                     <a class="dropdown-item" href="{{ route('mypage' , ['id' =>Auth::user()->id]) }}">
                                         {{ __('マイページ') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile-edit' , [Auth::user()->id]) }}">
+                                    <a class="dropdown-item" href="{{ route('profile-edit') }}">
                                         {{ __('プロフィール編集') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile-delete-page' , [Auth::user()->id]) }}">
+                                    <a class="dropdown-item" href="{{ route('chat-list') }}">
+                                        {{ __('メッセージ') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('profile-delete-page') }}">
                                         {{ __('アカウント削除') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
