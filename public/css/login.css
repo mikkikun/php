@@ -53,6 +53,15 @@
     background: #c0392b !important;
     color: white !important;
   }
+
+  .login_btn3 {
+    width: 100%;
+    background: #c0392b !important;
+    color: white !important;
+    margin-top:50px;
+  }
+
+
   .login_btn:focus {
     box-shadow: none !important;
     outline: 0px !important;
@@ -60,6 +69,7 @@
   .login_container {
     padding: 0 2rem;
   }
+  
   .input-group-text {
     background: #c0392b !important;
     color: white !important;
