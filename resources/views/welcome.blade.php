@@ -59,11 +59,11 @@
             </div>
         </header>
         <!-- About-->
-        <section class="page-section bg-primary" id="about">
-            <div class="container px-4 px-lg-5">
+        <section class="page-section bg-primary h-100" id="about">
+            <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">Card Matchとは</h2>
+                        <h2 class="text-white mt-5">Card Matchとは</h2>
                         <hr class="divider divider-light" />
                         <p class="text-white-75 mb-4">大会勢からカジュアル勢まで好きなカードゲームで交流し合えるWEBサイトです。</p>
                         <p class="text-white-75 mb-4">カードゲームについて話し合える仲間が見つかるコミュニティーです。</p>
@@ -73,9 +73,9 @@
             </div>
         </section>
         <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">特徴</h2>
+        <section class="page-section h-100" id="services">
+            <div class="container px-4 px-lg-5 h-100">
+                <h2 class="text-center mt-2">特徴</h2>
                 <hr class="divider" />
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
@@ -113,9 +113,9 @@
         <div id="portfolio">
         </div>
         <!-- Call to action-->
-        <section class="page-section bg-dark text-white">
-            <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">さっそく使ってみよう！！</h2>
+        <section class="page-section bg-primary2 text-white h-100">
+            <div class="container px-4 px-lg-5 text-center h-100">
+                <h2 class="mb-4 mt-5">さっそく使ってみよう！！</h2>
                 <p class="text-white-75 mb-4">アカウントは無料で作成することができます。</p>
                 <p class="text-white-75 mb-4">まずは試してみましょう！</p>
                 <a class="btn btn-light btn-xl" href="{{ route('register') }}">新規会員登録</a>

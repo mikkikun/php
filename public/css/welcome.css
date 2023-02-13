@@ -7813,6 +7813,12 @@ textarea.form-control-lg {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
+.bg-primary2 {
+  --bs-bg-opacity: 1;
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../storage/welcome/publicdomainq-0013784tqc.jpg")!important;
+}
+
+
 
 .bg-secondary {
   --bs-bg-opacity: 1;
