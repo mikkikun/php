@@ -38,6 +38,9 @@
                     <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="120" height="120">
                 @endif
                 <h3 class="h3">{{ $users->name }}</h3>
+                @if (Auth::user()->isFollowed($users->id))
+                    <span class="mt-4 px-1 bg-secondary text-light">フォローされています</span>
+                @endif
             </div>
             <div class="profile-cover__action bg--img" data-overlay="0.3">
                 @if ($users->id === Auth::user()->id)
@@ -55,9 +58,6 @@
                             <button type="submit" class="btn btn-primary">フォローする</button>
                         </form>
                     @endif
-                @endif
-                @if (Auth::user()->isFollowed($users->id))
-                    <span class="mt-4 px-1 bg-secondary text-light ">フォローされています</span>
                 @endif
                 <!-- <button class="btn btn-rounded btn-info">
                     <i class="fa fa-plus"></i>
