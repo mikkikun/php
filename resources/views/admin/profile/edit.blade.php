@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<title>プロフィール編集</title>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -54,7 +55,7 @@
                                 <input type="hidden" name="id" value="{{ $users_form->id }}">
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-primary">
-                                    投稿する
+                                    プロフィール編集
                                 </button>
                             </div>
                         </div>
