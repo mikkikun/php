@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<title>投稿ページ</title>
+<div class="container" >
+    <div class="row justify-content-center" >
+        <div class="col-md-8 my-5">
             <div class="card">
-                <div class="card-header">投稿ページ</div>
+                <div class="card-header ">投稿ページ</div>
                 <div class="card-body">
                     <form method="POST" action="{{ action('App\Http\Controllers\Admin\PostController@create') }}" enctype="multipart/form-data">
                         @csrf
@@ -25,11 +26,11 @@
                                     <p class="mb-0">　<a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}"style= "text-decoration: none" >{{ $users->name }}</a></p>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <label>タイトル</label>
+                            <div class="col-md-12 my-3">
+                                <label class="my-2">タイトル</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="text" value="{{ old('title') }}">
                                 <p></p>
-                                <label  style= "font-size:20px;">本文</label>
+                                <label  class="my-2" style= "font-size:20px;">本文</label>
                                 <textarea class="form-control @error('text') is-invalid @enderror" name="body" required autocomplete="text" rows="4">{{ old('body') }}</textarea>
                                 @error('text')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-0 my-2">
                             <div class="col-md-12 text-right">
                                 <p class="mb-4 text-danger">255文字以内</p>
                                 <select type="text" class="@error('select') is-invalid @enderror" name="cardgame" required autocomplete="select" value="{{ old('cardgame') }}">

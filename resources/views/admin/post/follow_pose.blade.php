@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-	<title>みんなの投稿</title>
+	<title>フォロー中の投稿</title>
 	<style>
 		.h7
 		{
@@ -26,7 +26,7 @@
 	</style>
 </head>
 <body>
-	<div class="container-fluid " style="background-color:#8dd1e9;">
+	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-9 my-5" style="margin:0 auto;">
 				<!--- Post Form Begins -->

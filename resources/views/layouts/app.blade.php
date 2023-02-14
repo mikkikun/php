@@ -94,7 +94,7 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="" style="background-color:#8dd1e9; ">
             @yield('content')
         </main>
     </div>

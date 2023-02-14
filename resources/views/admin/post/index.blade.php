@@ -26,7 +26,7 @@
 	</style>
 </head>
 <body>
-	<div class="container-fluid " style="background-color:#8dd1e9;">
+	<div class="container-fluid ">
 		<div class="row ">
 			<div class="col-9 my-5" style="margin:0 auto;">
 				<!--- Post Form Begins -->
