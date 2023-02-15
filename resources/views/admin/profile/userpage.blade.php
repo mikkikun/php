@@ -16,7 +16,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
+    <link href="{{ asset('css/userpage.css') }}" rel="stylesheet">
 	<title>ユーザーページ</title>
 	<style>
 		.h7
@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<link href="{{ asset('css/userpage.css') }}" rel="stylesheet">
+
 <div class="container">
     <div class="col-lg-8" style="margin:0 auto;">
         <div class="panel profile-cover">
@@ -63,9 +63,11 @@
                     <i class="fa fa-plus"></i>
                     <span></span>
                 </button> -->
-                <button class="btn btn-rounded btn-info aaaaa">
-                    <a href="{{ action('App\Http\Controllers\Admin\ChatController@index',['user_id' => $users->id]) }}" class = "message">メッセージ</a>
-                </button>
+                @if ($users->id !== Auth::user()->id)
+                    <button class="btn btn-rounded btn-info ">
+                        <a href="{{ action('App\Http\Controllers\Admin\ChatController@index',['user_id' => $users->id]) }}" class = "message">メッセージ</a>
+                    </button>
+                @endif
             </div>
             <div class="profile-cover__info">
                 <ul class="nav">
