@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\FavoriteComment;
+use App\Models\FavoriteReplie;
 
 
 class FavoritesController extends Controller
@@ -83,4 +84,41 @@ class FavoritesController extends Controller
         $favorites = FavoriteComment::where('comment_id',$id)->get();
         return view('admin.comment.favorite', ['favorites' => $favorites]);
     }
+
+    public function replie_favorite_page(Request $request)
+    {
+        
+        $id = $request->id;
+        $favorites = new FavoriteReplie;
+        $favorites = FavoriteReplie::where('replie_id',$id)->get();
+        return view('admin.comment.favorite', ['favorites' => $favorites]);
+    }
+
+    public function replie_store(Request $request, FavoriteReplie $favorites_replie)
+    {
+        $user_id = auth()->user()->id;
+        $replie_id = $request->replie_id;
+        
+        $is_favorite = $favorites_replie->isFavorite_replie($user_id, $replie_id);
+        if(!$is_favorite) {
+            $favorites_replie->storeFavorite_replie($user_id, $replie_id);
+            return back();
+        }
+        return back();
+    }
+
+    public function replie_destroy(Request $request, FavoriteReplie $favorites_replie)
+    {
+        $user_id = auth()->user()->id;
+        $replie_id = $request->replie_id;
+        // $favorite_id = $favorite->id;
+        $is_favorite = $favorites_replie->isFavorite_replie($user_id, $replie_id);
+
+        if($is_favorite) {
+            $favorites_replie->destroyFavorite_replie($user_id, $replie_id);
+            return back();
+        }
+        return back();
+    }
+
 }

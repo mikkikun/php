@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Replie;
 
 class CommentsController extends Controller
 {
@@ -15,7 +16,11 @@ class CommentsController extends Controller
     {
         $posts = Post::find($request->post_id);
         $users = User::find($request->user_id);
-        $comments = Comment::query()->whereIn('post_id', Post::find($request->post_id)->comments()->pluck('post_id'))->latest('created_at')->get();
+        // $comments = Comment::query()->whereIn('post_id', Post::find($request->post_id)->comments()->pluck('post_id'))->latest('created_at')->get();
+        $comments = Comment::with(['user', 'replies', 'replies.user'])
+            ->where('comments.post_id', $request->post_id)
+            ->latest('updated_at')->get();
+        // $replies = Replie::query()->whereIn('comment_id', Comment::find($comments->id)->replies()->pluck('comment_id'))->latest('created_at')->get();
         return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 
@@ -69,7 +74,7 @@ class CommentsController extends Controller
         $comments->save();
         $comments = Comment::query()
                     ->whereIn('post_id', $posts->comments()->pluck('post_id'))
-                    ->latest('created_at')
+                    ->latest('updated_at')
                     ->get();
         return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
@@ -77,8 +82,88 @@ class CommentsController extends Controller
     public function delete(Request $request)
     {
         $comments = new Comment;
-        $comments = Comment::find($request->id);
-        $comments->delete();
+        if(isset($request->comment_id)) {
+            $comments = Comment::find($request->comment_id);
+            $comments->delete();
+        }elseif(isset($request->replie_id)){
+            $replie = Replie::find($request->replie_id);
+            $replie->delete();
+        }
+        return back();
+    }
+
+    public function replie(Request $request)
+    {
+        $posts = Post::find($request->posts);
+        $users = User::find(Auth::id());
+        $comments = Comment::find($request->comments);
+        return view('admin.comment.replie', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
+    }
+
+    public function replie_create(Request $request)
+    {
+        $posts = Post::find($request->posts);
+        $users = User::find($request->users);
+        $comments = Comment::query()
+                    ->whereIn('post_id', $posts->comments()->pluck('post_id'))
+                    ->latest('created_at')
+                    ->get();
+        $replies = new Replie;
+        $replies->user_id = Auth::id();
+        $replies->comment_id = $request->comments;
+        $replies->body = $request->body;
+        $form = $request->all();
+        if (isset($form['image_path'])) {
+            $path = $request->file('image_path')->store('public/replie');
+            $replies->image_path = basename($path);
+        } else {
+            $replies->image_path = null;
+        }
+        unset($form['_token']);
+        unset($form['image_path']);
+        $replies->save();
+        return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
+    }
+
+    public function replie_edit(Request $request)
+    {
+        $replie = Replie::find($request->replie);
+        $users = User::find($request->users);
+        $posts = Post::find($request->posts);
+        if (empty($replie)) {
+        abort(404);    
+        }
+        return view('admin.comment.replie_edit', ['posts' => $posts,'users' => $users ,'replie' => $replie]);
+    }
+
+    public function replie_update(Request $request)
+    {
+        
+        // $this->validate($request, Comment::$rules);
+        $users = User::find($request->users);
+        $posts = Post::find($request->posts);
+        $replie = Replie::find($request->replie);
+        $replie_form = $request->all();
+        $replie->body = $request->body;
+        if (isset($replie_form['image'])) {
+            $path = $request->file('image')->store('public/replie');
+            $replie->image_path = basename($path);
+            unset($replie_form['image']);
+        } elseif (0 == strcmp($request->remove, 'true')) {
+            $replie->image_path = null;
+        }
+        $replie->save();
+        $comments = Comment::query()
+                    ->whereIn('post_id', $posts->comments()->pluck('post_id'))
+                    ->latest('updated_at')
+                    ->get();
+        return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
+    }
+
+    public function replie_delete(Request $request)
+    {
+        $replie = Replie::find($request->id);
+        $replie->delete();
         return back();
     }
 }

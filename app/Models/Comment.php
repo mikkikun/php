@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\FavoriteComment;
+use App\Models\Replie;
 
 
 class Comment extends Model
@@ -32,5 +33,10 @@ class Comment extends Model
     public function favorites_comments()
     {
         return $this->hasMany(FavoriteComment::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Replie::class);
     }
 }

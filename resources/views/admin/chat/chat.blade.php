@@ -38,6 +38,11 @@
                                             @endif
                                         </p>
                                     </div>
+                                        <form method="POST" action="{{ action('App\Http\Controllers\Admin\ChatController@delete', ['id' => $item->id]) }}" class="mb-0">
+                                            <button type="submit" class="dropdown-item del-btn" style="color:#FF0000; text-align:right;">削除</button>
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                 </li>
                             @else
                                 <li class="right clearfix"><span class="chat-img pull-right">

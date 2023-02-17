@@ -49,6 +49,16 @@ class ChatController extends Controller
         $my_id = auth()->user()->id;
         $chats = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
         ->groupBy('user_id')->where('user_id', '!==', 'my_id')->get('user_id');
+        // $chats_comment = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
+        // ->get();
+        // dd($chats_comment);
         return view('admin.chat.list', ['chats' => $chats]);
+    }
+
+    public function delete(Request $request)
+    {
+        $chats = Chat::find($request->id);
+        $chats->delete();
+        return back();
     }
 }

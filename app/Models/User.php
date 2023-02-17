@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Models\follow;
 use App\Models\Chat;
 use App\Models\favorite;
+use App\Models\Replie;
 
 
 class User extends Authenticatable
@@ -103,14 +104,19 @@ class User extends Authenticatable
         return $this->hasMany(favoritescomment::class);
     }
 
-    // public function getAllUsers(Int $user_id)
-    // {
-    //     return $this->Where('id', '<>', $user_id)->paginate(5);
-    // }
-
     public function chats()
     {
         return $this->hasMany(Chat::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Replie::class);
+    }
+
+    public function favoritesreprie()
+    {
+        return $this->hasMany(favoritesReplie::class);
     }
 
 }

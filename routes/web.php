@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('favorites', [FavoritesController::class, 'destroy'])->middleware('auth')->name('unfavorites');
     Route::get('post/favorite', [FavoritesController::class, 'favorite_page'])->middleware('auth');
     Route::get('comment/favorite', [FavoritesController::class, 'comment_favorite_page'])->middleware('auth');
+    Route::get('replie/favorite', [FavoritesController::class, 'replie_favorite_page'])->middleware('auth');
     
 
     Route::get('profile/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('profile-edit'); 
@@ -63,12 +64,21 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('comment/edit', [CommentsController::class, 'edit'])->middleware('auth'); 
     Route::post('comment/edit', [CommentsController::class, 'update'])->middleware('auth');
     Route::delete('comment/index', [CommentsController::class, 'delete'])->middleware('auth');
+    Route::get('comment/replie', [CommentsController::class, 'replie'])->middleware('auth'); 
+    Route::post('comment/replie', [CommentsController::class, 'replie_create'])->middleware('auth');
+    Route::get('comment/replie_edit', [CommentsController::class, 'replie_edit'])->middleware('auth'); 
+    Route::post('comment/replie_edit', [CommentsController::class, 'replie_update'])->middleware('auth');
+    
+
     Route::post('favorites_comment', [FavoritesController::class, 'comment_store'])->middleware('auth')->name('favorites_comment');
     Route::delete('favorites_comment', [FavoritesController::class, 'comment_destroy'])->middleware('auth')->name('unfavorites_comment');
+    Route::post('favorites_replie', [FavoritesController::class, 'replie_store'])->middleware('auth')->name('favorites_replie');
+    Route::delete('favorites_replie', [FavoritesController::class, 'replie_destroy'])->middleware('auth')->name('unfavorites_replie');
 
 
     Route::get('chat/chat', [ChatController::class, 'index'])->middleware('auth');
     Route::post('chat', [ChatController::class, 'add'])->middleware('auth');
+    Route::delete('chat', [ChatController::class, 'delete'])->middleware('auth');
     Route::get('chat/list', [ChatController::class, 'list'])->middleware('auth')->name('chat-list');
 });
 

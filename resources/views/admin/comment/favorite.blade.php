@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<title>いいねリスト</title>
+<title>コメントいいねリスト</title>
 <div class="container">
     <div class="profile ">
         <div class="profile-container">

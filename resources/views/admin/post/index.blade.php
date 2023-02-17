@@ -135,7 +135,7 @@
                                         </li>
                                         <li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-right-0 border-top-0 border-bottom-0">
                                             <a class="small text-decoration-none" href="{{ action('App\Http\Controllers\Admin\CommentsController@index', ['post_id' => $data->id, 'user_id' => $data->user->id]) }}">
-                                                <i class="fas fa-comment-alt"></i> {{ count($data->comments) }} Comment
+                                                <i class="fas fa-comment-alt"></i> {{ count($data->comments) }} コメント
                                             </a>
                                         </li>
                                     </ul>
