@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <link href="{{ asset('css/chat.css') }}" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <title>メッセージ</title>
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-    <div class="row my-5">
+    <div class="row">
         <div class="col-md">
             <div class="panel panel-primary">
                 <div class="panel-heading">
