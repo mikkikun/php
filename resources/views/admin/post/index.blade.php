@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="flex-grow-1 pl-2">
                                     <a class="text-decoration-none" href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
-                                        <h2 class="text-capitalize h5 mb-0">{{ $data->user->name }}</h2>
+                                        <h2 class=" h5 mb-0">{{ $data->user->name }}</h2>
                                     </a> 
                                     <p class="small text-secondary m-0 mt-0" style="text-align:right;">{{ $data->updated_at }}</p>
                                     <p class="text-capitalize h3 mt-0">{{ $data->title}}（{{ $data->cardgame}}）</p>
