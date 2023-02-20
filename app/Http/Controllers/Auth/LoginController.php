@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     public function guest()
     {
-        $guestUserId = 5; //ゲストユーザーのIDを１とする
+        $guestUserId = 1; //ゲストユーザーのIDを１とする
         $user = User::find($guestUserId);
         Auth::login($user);
   //ログイン後リダイレクトしたいところにリダイレクトするなどしてください
