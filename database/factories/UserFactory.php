@@ -27,15 +27,15 @@ class UserFactory extends Factory
     $factory->define(User::class, function (Faker $faker) {
         return [
             'id'=> $faker->name,
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('profile', 255)->nullable();
-            $table->string('profile_image')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
-            $table->softDeletes()->nullable();
+            // $table->string('name');
+            // $table->string('email')->unique();
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->string('password');
+            // $table->string('profile', 255)->nullable();
+            // $table->string('profile_image')->nullable();
+            // $table->rememberToken();
+            // $table->timestamps();
+            // $table->softDeletes()->nullable();
             'name' => $faker->name,
             'email' => $faker->unique()->safeEmail,
             'email_verified_at' => now(),
