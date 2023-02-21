@@ -69,6 +69,17 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
                 'deleted_at' =>NULL
             ],
+            [
+                'name' => 'ユーザー6',
+                'email' => 'user6@test.com',
+                'password' => Hash::make('password'),
+                'profile' => '見る専',
+                'profile_image' => NULL,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'deleted_at' =>NULL
+            ],
+            
         ];
 
         DB::table('users')->insert($data);
