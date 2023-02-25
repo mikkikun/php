@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-@if($title == "a")
+@if($discrimination == "follow")
     <title>フォローリスト</title>
-@elseif($title == "b")
-<title>フォワーリスト</title>
+@elseif($discrimination == "follower")
+    <title>フォワーリスト</title>
 @endif
+<link href="{{ asset('css/follow.css') }}" rel="stylesheet">
 <div class="container">
     <div class="profile ">
         <div class="profile-container">
@@ -15,7 +16,7 @@
                         <div class="tab-content p-0 mt-5 px-1">
                             <div class="tab-pane fade active show" id="profile-followers">
                                 <div class="list-group">
-                                    @foreach ($users as $user)
+                                    @forelse ($users as $user)
                                         <div class="list-group-item d-flex align-items-center">
                                             @if($user->profile_image !== null)
                                                 <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $user->id]) }}">
@@ -49,7 +50,15 @@
                                                 </form>
                                             @endif
                                         </div>
-                                    @endforeach
+                                    @empty
+                                    @if($discrimination == "follow")
+                                        <div class="follow_empty"></div>
+                                    @elseif($discrimination == "follower")
+                                        <div class="follower_empty"></div>
+                                    @endif
+                                    
+                                    
+                                    @endforelse
                                 </div>
                                 <!-- <div class="text-center p-3">
                                     <a href="#" class="text-dark text-decoration-none">Show more <b class="caret"></b></a>

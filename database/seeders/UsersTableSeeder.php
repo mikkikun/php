@@ -79,6 +79,16 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
                 'deleted_at' =>NULL
             ],
+            [
+                'name' => 'ユーザー7',
+                'email' => 'user7@test.com',
+                'password' => Hash::make('password'),
+                'profile' => '無',
+                'profile_image' => NULL,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'deleted_at' =>NULL
+            ],
             
         ];
 

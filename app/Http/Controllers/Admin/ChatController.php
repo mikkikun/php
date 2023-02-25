@@ -47,6 +47,7 @@ class ChatController extends Controller
     public function list(Request $request)
     {
         $my_id = auth()->user()->id;
+        $user_id = 
         $chats = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
         ->groupBy('user_id')->where('user_id', '!==', 'my_id')->get('user_id');
         // $chats_comment = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)

@@ -1,0 +1,21 @@
+.follow_empty {
+   width: 100%;
+    height: 0;
+    /* (画像の高さ / 画像の横幅) × 100 */
+    padding-top: 66.6666666667%;
+    background-image: url(../storage/welcome/follow_empty.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .follower_empty{
+    width: 100%;
+    height: 0;
+    /* (画像の高さ / 画像の横幅) × 100 */
+    padding-top: 66.6666666667%;
+    background-image: url(../storage/welcome/follower_empt.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
