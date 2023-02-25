@@ -70,7 +70,7 @@
                         <a class="dropdown-item" href="{{ route('chat-list') }}">
                             {{ __('メッセージ') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('map') }}">
+                        <a class="dropdown-item" href="{{ route('chat-list') }}">
                             {{ __('カードゲーマーを探す') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('profile-delete-page') }}">
