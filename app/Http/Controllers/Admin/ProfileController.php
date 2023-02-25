@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Follow;
+use App\Models\Replie;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -53,9 +54,14 @@ class ProfileController extends Controller
     public function delete(Request $request)
     {
         $users = new User;
-        $post = new Post;
         $users = User::find(Auth::id());
+        $posts = Post::where('user_id', Auth::id());
+        // $replie = Replie::where('user_id', Auth::id());
+        // $follow = Follow::where('following_id', Auth::id());
+        // $follower = Follow::where('followed_id', Auth::id());
         $users->delete();
+        $posts->delete();
+        // $replie>delete();
 
         // if($post->user_id == Auth::id()) {
         //     $post->delete();
@@ -102,8 +108,6 @@ class ProfileController extends Controller
 
     public function follow_page(Request $request)
     {
-        // $user = new User;
-        // $all_users = $user->getAllUsers(auth()->user()->id);
         $id = $request->id;
         $users = User::query()->whereIn('id', User::find($id)->follows()->pluck('followed_id'))->latest()->get();
         $discrimination = "follow";
@@ -112,8 +116,6 @@ class ProfileController extends Controller
 
     public function follower_page(Request $request)
     {
-        // $user = new User;
-        // $all_users = $user->getAllUsers(auth()->user()->id);
         $id = $request->id;
         $users = User::query()->whereIn('id', User::find($id)->followers()->pluck('following_id'))->latest()->get();
         $discrimination = "follower";
