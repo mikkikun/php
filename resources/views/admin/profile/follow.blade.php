@@ -51,11 +51,11 @@
                                             @endif
                                         </div>
                                     @empty
-                                    @if($discrimination == "follow")
-                                        <div class="follow_empty"></div>
-                                    @elseif($discrimination == "follower")
-                                        <div class="follower_empty"></div>
-                                    @endif
+                                        @if($discrimination == "follow")
+                                            <div class="follow_empty"></div>
+                                        @elseif($discrimination == "follower")
+                                            <div class="follower_empty"></div>
+                                        @endif
                                     
                                     
                                     @endforelse

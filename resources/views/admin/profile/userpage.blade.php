@@ -83,7 +83,7 @@
         <div class="panel">
             <section class="card mt-4">
                 <h3 class="panel-title mt-2 p-2">{{ $users->name }}さんの投稿一覧</h3>
-                    @foreach ($posts as $data)
+                    @forelse ($posts as $data)
                         <div class="border p-2">
                             @if($data->user_id == Auth::id())
                                 <div class="dropdown" style="text-align:right;">
@@ -173,7 +173,11 @@
                             </footer>
                             <!-- post footer ends -->
                         </div>
-                    @endforeach
+                    @empty
+                    <li class="list-group-item">
+                        <p class="mb-0 text-secondary">投稿はまだありません。</p>
+                    </li>
+                    @endforelse
 				</section>
         </div>
     </div>

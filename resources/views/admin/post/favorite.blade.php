@@ -2,6 +2,7 @@
 
 @section('content')
 <title>いいねリスト</title>
+<link href="{{ asset('css/favorite.css') }}" rel="stylesheet">
 <div class="container">
     <div class="profile ">
         <div class="profile-container">
@@ -11,7 +12,7 @@
                         <div class="tab-content p-0 mt-5 px-1">
                             <div class="tab-pane fade active show" id="profile-followers">
                                 <div class="list-group">
-                                    @foreach ($favorites as $favorite)
+                                    @forelse ($favorites as $favorite)
                                         <div class="list-group-item d-flex align-items-center">
                                             @if($favorite->user->profile_image !== null)
                                                 <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $favorite->user->id]) }}">
@@ -45,7 +46,9 @@
                                                 </form>
                                             @endif
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="favorite_empty"></div>
+                                    @endforelse
                                 </div>
                                 <!-- <div class="text-center p-3">
                                     <a href="#" class="text-dark text-decoration-none">Show more <b class="caret"></b></a>

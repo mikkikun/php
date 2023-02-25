@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="{{ asset('css/follow_index.css') }}" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,7 +30,6 @@
 	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-9 my-5" style="margin:0 auto;">
-				<!--- Post Form Begins -->
                 <form action="{{ action('App\Http\Controllers\Admin\PostController@follow_pose') }}" method="get">
                     <label class="col-md-2" style= "font-size:20px;">投稿検索</label>
                         <select type="text" class="" name="cond_title" value="{{ $cond_title }}">
@@ -49,11 +49,8 @@
                         {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="検索">
                 </form>
-                <!--- Post Form Ends -->
-
-				<!-- Post Begins -->
 				<section class="card mt-4">
-                    @foreach ($posts as $data)
+                    @forelse ($posts as $data)
                         <div class="border p-2">
                             @if($data->user_id == Auth::id())
                                 <div class="dropdown" style="text-align:right;">
@@ -69,8 +66,6 @@
                                     </div>
                                 </div>
                             @endif
-                            
-                            <!-- post header -->
                             <div class="row m-0">
                                 <div class="">
                                     @if($data->user->profile_image !== null)
@@ -91,7 +86,6 @@
                                     <p class="text-capitalize h3 mt-0">{{ $data->title}}（{{ $data->cardgame}}）</p>
                                 </div>
                             </div>
-                            <!-- post body -->
                             <div class="row m-0">
                                 <p class="my-1">{{ $data->body}}</p>
                                 
@@ -100,9 +94,7 @@
                                 @if($data->image_path !== null)
                                     <img src="{{ asset('storage/image').'/'.$data->image_path }}" width="150" height="150">
                                 @endif
-                            <!-- post footer begins -->
                             <footer class="row m-3">
-                                <!-- post actions -->
                                 <div class="my-1">
                                     <ul class="list-group list-group-horizontal">
                                         <li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-0">
@@ -142,11 +134,11 @@
                                 </div>
                                 
                             </footer>
-                            <!-- post footer ends -->
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="follow_empty"></div>
+                    @endforelse
 				</section>
-				<!-- Post Ends -->
 			</div>
 		</div>
 	</div>
