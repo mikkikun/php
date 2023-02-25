@@ -70,6 +70,9 @@
                         <a class="dropdown-item" href="{{ route('chat-list') }}">
                             {{ __('メッセージ') }}
                         </a>
+                        <a class="dropdown-item" href="{{ route('map') }}">
+                            {{ __('カードゲーマーを探す') }}
+                        </a>
                         <a class="dropdown-item" href="{{ route('profile-delete-page') }}">
                             {{ __('アカウント削除') }}
                         </a>
@@ -90,9 +93,8 @@
 
     <!--  -->
 
-        <main class="" style="background-color:#8dd1e9; ">
+        <main class="" style="background-color:#8dd1e9;">
             @yield('content')
         </main>
-    </div>
 </body>
 </html>

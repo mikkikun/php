@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CommentsController;
 use App\Http\Controllers\Admin\FavoritesController;
 use App\Http\Controllers\Admin\ChatController;
+use App\Http\Controllers\Admin\MapController;
 
 
 
@@ -80,5 +81,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('chat', [ChatController::class, 'add'])->middleware('auth');
     Route::delete('chat', [ChatController::class, 'delete'])->middleware('auth');
     Route::get('chat/list', [ChatController::class, 'list'])->middleware('auth')->name('chat-list');
+
+    Route::get('map/map', [MapController::class, 'map'])->middleware('auth')->name('map');
 });
 

@@ -27,7 +27,7 @@ class UserTest extends TestCase
 
         // ログインを実行
         $response = $this->post('login', [
-            'email'    => $users->email,
+            'email'    => $user->email,
             'password' => 'laraveltest123'
             //先ほど設定したパスワードを入力
         ]);
@@ -37,6 +37,6 @@ class UserTest extends TestCase
 
         // ログイン後にホームページにリダイレクトされるのを確認
         $response->assertRedirect('home');
-　　　　　//作成したサイトでログイン後にリダイレクトされるルート情報を記述
+        //作成したサイトでログイン後にリダイレクトされるルート情報を記述
     }
 }
