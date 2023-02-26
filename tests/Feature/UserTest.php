@@ -34,7 +34,6 @@ class UserTest extends TestCase
 
         // 認証されていることを確認
         $this->assertTrue(Auth::check());
-
         // ログイン後にホームページにリダイレクトされるのを確認
         $response->assertRedirect('home');
         //作成したサイトでログイン後にリダイレクトされるルート情報を記述
