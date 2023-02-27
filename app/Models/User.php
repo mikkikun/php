@@ -119,4 +119,8 @@ class User extends Authenticatable
         return $this->hasMany(favoritesReplie::class);
     }
 
+    public function getNameCount()
+    {
+        return strlen($this->name);
+    }
 }
