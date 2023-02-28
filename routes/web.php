@@ -70,7 +70,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('comment/replie_edit', [CommentsController::class, 'replie_edit'])->middleware('auth'); 
     Route::post('comment/replie_edit', [CommentsController::class, 'replie_update'])->middleware('auth');
     
-
     Route::post('favorites_comment', [FavoritesController::class, 'comment_store'])->middleware('auth')->name('favorites_comment');
     Route::delete('favorites_comment', [FavoritesController::class, 'comment_destroy'])->middleware('auth')->name('unfavorites_comment');
     Route::post('favorites_replie', [FavoritesController::class, 'replie_store'])->middleware('auth')->name('favorites_replie');
