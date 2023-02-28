@@ -59,7 +59,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/follow', [ProfileController::class, 'follow_page'])->middleware('auth'); 
     Route::get('profile/follower', [ProfileController::class, 'follower_page'])->middleware('auth'); 
 
-
     Route::get('comment/index', [CommentsController::class, 'index'])->middleware('auth'); 
     Route::post('comment/index', [CommentsController::class, 'create'])->middleware('auth');
     Route::get('comment/edit', [CommentsController::class, 'edit'])->middleware('auth'); 
