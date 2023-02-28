@@ -76,7 +76,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('favorites_replie', [FavoritesController::class, 'replie_store'])->middleware('auth')->name('favorites_replie');
     Route::delete('favorites_replie', [FavoritesController::class, 'replie_destroy'])->middleware('auth')->name('unfavorites_replie');
 
-
     Route::get('chat/chat', [ChatController::class, 'index'])->middleware('auth');
     Route::post('chat', [ChatController::class, 'add'])->middleware('auth');
     Route::delete('chat', [ChatController::class, 'delete'])->middleware('auth');
