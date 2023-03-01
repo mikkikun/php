@@ -26,8 +26,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('post/index', [App\Http\Controllers\Admin\PostController::class, 'home'])->name('admin/post/index');
 Route::get('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
 Route::post('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
 
@@ -35,7 +33,6 @@ Route::post('/guest-login', [ LoginController::class, 'guest'])->name('guestLogi
 Route::group(['prefix' => 'admin'], function() {
     Route::get('post/create', [PostController::class, 'add'])->middleware('auth')->name('create');
     Route::post('post/create', [PostController::class, 'create'])->middleware('auth');
-    Route::get('post/index', [PostController::class, 'index'])->middleware('auth'); 
     Route::get('post/edit', [PostController::class, 'edit'])->middleware('auth'); 
     Route::post('post/edit', [PostController::class, 'update'])->middleware('auth');
     Route::post('post/index', [PostController::class, 'delete'])->middleware('auth');

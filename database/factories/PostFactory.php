@@ -15,12 +15,16 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $random_id = optional(User::inRandomOrder()->first())->id;
+        $id = $faker->bool && $random_id ? $random_id : factory(User::class)->create()->id
+        $cardgames = ["遊戯王", "遊戯王ラッシュデュエル", "デュエル・マスターズ", "ポケモンカード", "ヴァイスシュヴァルツ", "シャドウバース", "ヴァンガード", "ONE PIECE", "マジック・ザ・ギャザリング", "ウィクロス", "その他"];
+        $cardgame = $cardgames[rand(0, count($cardgames) - 1)];
         return [
-            'user_id' => $this->faker->name(),
-            'title' => $this->faker->unique()->safeEmail(),
-            'body' => now(),
-            'cardgame' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'image_path' => Str::random(10),
+            'user_id' => $id
+            'title' => $this->faker->text(25),
+            'body' => $this->faker->text(255),
+            'cardgame' => $cardgame, 
+            'image_path' =>  NULL,
         ];
     }
 }
