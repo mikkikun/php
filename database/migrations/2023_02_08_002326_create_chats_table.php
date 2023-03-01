@@ -17,7 +17,7 @@ class CreateChatsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('my_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->string('comment');
+            $table->string('comment',255);
             $table->string('image_path')->nullable();
             $table->timestamps();
         });
