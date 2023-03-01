@@ -31,6 +31,7 @@ Route::get('post/index', [App\Http\Controllers\Admin\PostController::class, 'hom
 Route::get('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
 Route::post('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
 
+
 Route::group(['prefix' => 'admin'], function() {
     Route::get('post/create', [PostController::class, 'add'])->middleware('auth')->name('create');
     Route::post('post/create', [PostController::class, 'create'])->middleware('auth');
