@@ -71,9 +71,12 @@ class RegisterTest extends TestCase
         $errorMessage = 'パスワードは、8文字以上で指定してください。';
         $this->get(route('register'))->assertSee($errorMessage);
 
-        // $response = $this->post(route('register'), ['password,password-confirm'  => Str::random(8)]);
-        // $errorMessage = 'パスワードは、8文字以上で指定してください。';
-        // $this->get(route('register'))->assertSee($errorMessage);
+        $response = $this->post(route('register'), [
+            'password'  => 'password123',
+            'password-confirm'  => 'password1234',
+        ]);
+        $errorMessage = 'パスワードと、確認パスワードが、一致していません。';
+        $this->get(route('register'))->assertSee($errorMessage);
         
     }
 }

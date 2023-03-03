@@ -46,10 +46,14 @@ class ChatController extends Controller
 
     public function list(Request $request)
     {
-        $my_id = auth()->user()->id;
-        $user_id = 
-        $chats = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
-        ->groupBy('user_id')->where('user_id', '!==', 'my_id')->get('user_id');
+        $id = auth()->user()->id;
+        $chats = Chat::where('my_id',$id)->orwhere('user_id',$id)->groupBy('user_id')
+        ->transform(function ($id) {
+            return $id->groupBy('my_id')
+            ->values(); // valuesは用途に応じてお好みで。詳細は問2参照。
+        });
+        // $chats = Chat::where('my_id',$id)->orwhere('user_id',$id)
+        // ->groupBy('user_id')->where('user_id', '!==', 'my_id')->get();
         // $chats_comment = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
         // ->get();
         // dd($chats_comment);
