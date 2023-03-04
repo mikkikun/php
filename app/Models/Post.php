@@ -9,6 +9,7 @@ use App\Models\User;
 
 class Post extends Model
 {
+    use HasFactory;
     use SoftDeletes;
     protected $guarded = array('id');
 
