@@ -142,6 +142,22 @@ class ChatsTableSeeder extends Seeder
             [
                 'my_id' => '5',
                 'user_id' => '1',
+                'comment' => 'テスト1',
+                'image_path' => NULL,
+                'created_at' => '2023-02-21 12:11:22',
+                'updated_at' => '2023-02-21 12:11:22',
+            ],
+            [
+                'my_id' => '5',
+                'user_id' => '1',
+                'comment' => 'テスト2',
+                'image_path' => NULL,
+                'created_at' => '2023-02-21 12:11:22',
+                'updated_at' => '2023-02-21 12:11:22',
+            ],
+            [
+                'my_id' => '6',
+                'user_id' => '1',
                 'comment' => 'テスト',
                 'image_path' => NULL,
                 'created_at' => '2023-02-21 12:11:22',
