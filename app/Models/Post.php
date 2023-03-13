@@ -14,8 +14,8 @@ class Post extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
-        'title' => 'required',
-        'body' => 'required',
+        'title' => ['required', 'string', 'max:25'],
+        'body' => ['required', 'string', 'max:255'],
         'cardgame'  => 'required'
     );
 
