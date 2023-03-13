@@ -28,11 +28,15 @@
                             </div>
                             <div class="col-md-12 my-3">
                                 <label class="my-2">タイトル</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="text" value="{{ old('title') }}">
-                                <p></p>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" autocomplete="text"  placeholder="25文字以内">
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <label  class="my-2" style= "font-size:20px;">本文</label>
-                                <textarea class="form-control @error('text') is-invalid @enderror" name="body" required autocomplete="text" rows="4">{{ old('body') }}</textarea>
-                                @error('text')
+                                <textarea class="form-control @error('body') is-invalid @enderror" name="body"  autocomplete="text" rows="4" placeholder="255文字以内"></textarea>
+                                @error('body')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -41,8 +45,7 @@
                         </div>
                         <div class="form-group row mb-0 my-2">
                             <div class="col-md-12 text-right">
-                                <p class="mb-4 text-danger">255文字以内</p>
-                                <select type="text" class="@error('select') is-invalid @enderror" name="cardgame" required autocomplete="select" value="{{ old('cardgame') }}">
+                                <select type="text" class="@error('select') is-invalid @enderror" name="cardgame"  autocomplete="select" >
                                     <option value="">選択してください</option>
                                     <option value="遊戯王">遊戯王</option>
                                     <option value="遊戯王ラッシュデュエル">遊戯王ラッシュデュエル</option>

@@ -53,11 +53,12 @@ class ChatController extends Controller
         // $chats = Chat::where('my_id',$id)->orwhere('user_id',$id)->where('user_id', '!==', 'my_id')->groupBy('user_id', 'my_id')->get('user_id');
         // $chats = Chat::where('my_id',$id)->orwhere('user_id',$id)->groupBy('my_id','user_id')->get('my_id','user_id');
         $chats = Chat::where(function($query)use($id){$query->where('my_id',$id)->orWhere('user_id',$id);})
+        ->select('user_id', 'my_id')
         ->groupBy('user_id', 'my_id')->get();
         // ->groupBy('user_id', 'my_id')->where('user_id', '!==', 'my_id')->get('user_id', 'my_id');
         // $chats_comment = Chat::where('my_id',$my_id)->orwhere('user_id',$my_id)
         // ->get();
-        dd($chats);
+        
         return view('admin.chat.list', ['chats' => $chats]);
     }
 

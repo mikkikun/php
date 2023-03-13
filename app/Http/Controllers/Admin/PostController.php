@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -24,7 +25,7 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
-        // $this->validate($request, Post::$rules);
+        $this->validate($request, Post::$rules);
         $posts = new Post;
         $posts->user_id = Auth::id();
         $form = $request->all();
