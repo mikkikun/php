@@ -116,8 +116,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control @error('text') is-invalid @enderror" name="body" required autocomplete="text" rows="4">{{ old('body') }}</textarea>
-                                    @error('text')
+                                    <textarea class="form-control @error('body') is-invalid @enderror" name="body" autocomplete="text" rows="4" placeholder="255文字以内でコメントを入力してください"></textarea>
+                                    @error('body')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -125,11 +125,12 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
-                                <div class="col-md-12 text-right">
-                                    <p class="mb-4 text-danger">255文字以内</p>
+                                <div class="col-md-12 p-3 w-100 d-flex">
                                     <label>画像</label>
                                     <input type="file" class="" name="image_path">
                                         {{ csrf_field() }}
+                                </div>
+                                <div class="col-md-12 p-3 w-100 text-right">
                                     <button type="submit" class="btn btn-primary">
                                         コメントする
                                     </button>

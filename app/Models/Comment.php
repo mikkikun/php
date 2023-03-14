@@ -20,9 +20,10 @@ class Comment extends Model
      *
      * @var array
      */
+    protected $guarded = array('id');
 
     public static $rules = array(
-        'body' => 'required',
+        'body' => ['required', 'string', 'max:255'],
     );
 
     public function user()

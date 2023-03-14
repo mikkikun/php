@@ -26,6 +26,7 @@ class CommentsController extends Controller
 
     public function create(Request $request)
     {
+        $this->validate($request, Comment::$rules);
         $comments = new Comment;
         $comments->user_id = Auth::id();
         $comments->post_id = $request->id;
@@ -46,6 +47,7 @@ class CommentsController extends Controller
 
     public function edit(Request $request)
     {
+        // $this->validate($request, Comment::$rules);
         $comments = Comment::find($request->comments);
         $users = User::find($request->users);
         $posts = Post::find($request->posts);

@@ -15,10 +15,10 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->bigInteger('my_id')->unsigned()->nullable();
-            $table->foreignId('my_id')->constrained('users');
-            // $table->bigInteger('user_id')->unsigned()->nullable()->constrained('users');
-            $table->foreignId('user_id')->constrained('users');
+            $table->bigInteger('my_id')->unsigned()->nullable();
+            // $table->foreignId('my_id')->constrained('users');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            // $table->foreignId('user_id')->constrained('users');
             $table->string('comment',255);
             $table->string('image_path')->nullable();
             $table->timestamps();

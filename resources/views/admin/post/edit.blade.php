@@ -77,7 +77,7 @@
                                     <input type="hidden" name="id" value="{{ $post_form->id }}">
                                     {{ csrf_field() }}
                                 </div>
-                                <div class="col-md-12 p-3 w-100 d-flex">
+                                <div class="col-md-12 p-3 w-100 text-right">
                                     <button type="submit" class="btn btn-primary">
                                         投稿する
                                     </button>
