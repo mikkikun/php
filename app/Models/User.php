@@ -51,7 +51,8 @@ class User extends Authenticatable
     ];
 
     public static $rules = array(
-        'name' => 'required'
+        'name' => ['required', 'string', 'max:25'],
+        'profile' => ['required', 'string', 'max:255'],
     );
 
     
