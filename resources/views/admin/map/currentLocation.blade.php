@@ -18,11 +18,4 @@
     <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyB97jyoa697wN5B5sLKJF_zEyTlYNzCtPk&callback=initMap" async defer>
     </script>
 
-
-
-
-
-
-
-
 @endsection

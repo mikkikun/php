@@ -76,7 +76,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::delete('chat', [ChatController::class, 'delete'])->middleware('auth');
     Route::get('chat/list', [ChatController::class, 'list'])->middleware('auth')->name('chat-list');
 
-    // Route::get('map/map', [MapController::class, 'map'])->middleware('auth')->name('map');
-    Route::get('map/map', [MapController::class, 'currentLocation'])->name('result.currentLocation');
+    Route::get('map/map', [MapController::class, 'map'])->middleware('auth')->name('map');
+    Route::get('map/currentLocation', [MapController::class, 'currentLocation'])->middleware('auth')->name('result.currentLocation');
 });
 

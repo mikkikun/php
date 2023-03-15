@@ -6,6 +6,7 @@ function setLocation(pos) {
   // 定数lat,lng をconsoleに出力
   console.log(lat);
   console.log(lng);
+
   // welcomeの中からlat_inputのclassを見つけて、そのvalueに、定数latを代入
   $(".lat_input").val(lat);
   //welcomeの中からlng_inputのclassを見つけて、そのvalueに、定数lngを代入

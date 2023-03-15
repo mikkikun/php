@@ -18,7 +18,7 @@ class MapController extends Controller
         $lat = $request->lat;
         $lng = $request->lng;
         // currentLocationで表示
-        return view('admin.map.map', [
+        return view('admin.map.currentLocation', [
             // 現在地緯度latをbladeへ渡す
             'lat' => $lat,
             // 現在地経度lngをbladeへ渡す
