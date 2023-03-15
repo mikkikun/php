@@ -47,7 +47,6 @@ class CommentsController extends Controller
 
     public function edit(Request $request)
     {
-        // $this->validate($request, Comment::$rules);
         $comments = Comment::find($request->comments);
         $users = User::find($request->users);
         $posts = Post::find($request->posts);
@@ -60,7 +59,7 @@ class CommentsController extends Controller
     public function update(Request $request)
     {
         
-        // $this->validate($request, Comment::$rules);
+        $this->validate($request, Comment::$rules);
         $users = User::find($request->users);
         $posts = Post::find($request->posts);
         $comments = Comment::find($request->comments);
@@ -104,6 +103,7 @@ class CommentsController extends Controller
 
     public function replie_create(Request $request)
     {
+        $this->validate($request, Replie::$rules);
         $posts = Post::find($request->posts);
         $users = User::find($request->users);
         $comments = Comment::query()
@@ -141,7 +141,7 @@ class CommentsController extends Controller
     public function replie_update(Request $request)
     {
         
-        // $this->validate($request, Comment::$rules);
+        $this->validate($request, Replie::$rules);
         $users = User::find($request->users);
         $posts = Post::find($request->posts);
         $replie = Replie::find($request->replie);

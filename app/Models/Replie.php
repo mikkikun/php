@@ -13,6 +13,17 @@ class Replie extends Model
     use HasFactory;
     use SoftDeletes;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
+
+    public static $rules = array(
+        'body' => ['required', 'string', 'max:255'],
+    );
+
     public function user()
     {
         return $this->belongsTo(User::class);
