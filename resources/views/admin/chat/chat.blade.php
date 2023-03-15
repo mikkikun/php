@@ -79,8 +79,13 @@
                 <div class="panel-footer">
                     <div class="input-group">
                         <form method="POST" action="{{ action('App\Http\Controllers\Admin\ChatController@add', ['id' => $users->id]) }}" enctype="multipart/form-data">
-                            <textarea class="form-control input-sm" id="comment" name="comment" placeholder="push massage (shift + Enter)"
-                                    aria-label="With textarea"></textarea>
+                            <textarea class="form-control @error('comment') is-invalid @enderror" id="comment" name="comment" placeholder="push massage (shift + Enter)" aria-label="With textarea"></textarea>
+                            @error('comment')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
                             <label>画像</label>
                             <input type="file" class="" name="image">
                             {{ csrf_field() }}

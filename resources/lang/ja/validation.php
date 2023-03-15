@@ -153,5 +153,6 @@ return [
         'body' => '本文',
         'cardgame' => 'カードゲーム',
         'profile' => 'プロフィール',
+        'comment' => 'メッセージ',
     ],
 ];

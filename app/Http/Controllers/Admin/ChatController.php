@@ -28,8 +28,8 @@ class ChatController extends Controller
 
     public function add(Request $request)
     {
+        $this->validate($request, Chat::$rules);
         $chats = new Chat;
-        
         $form = $request->all();
         $chats->comment = $request->comment;
         $chats->my_id = auth()->user()->id;

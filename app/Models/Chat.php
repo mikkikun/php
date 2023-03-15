@@ -16,6 +16,10 @@ class Chat extends Model
         'create_at', 'update_at'
     ];
 
+    public static $rules = array(
+        'comment' => ['required', 'string', 'max:255'],
+    );
+
     public function user()
     {
         return $this->belongsTo(User::class);
