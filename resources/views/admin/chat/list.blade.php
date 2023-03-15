@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
 <link href="{{ asset('css/list.css') }}" rel="stylesheet">
 <div class="container">
-<div class="main-body p-0">
-    <div class="inner-wrapper">
+    <div class="main-body p-0">
         <!-- Inner main -->
         <div class="">
             <div class="inner-main-body p-2 p-s collapse forum-content show">
@@ -33,7 +32,7 @@
                                         </h6>
                                         
                                         <p class="text-secondary">{{ $chat->created_at }}</p>
-                                        <h3 class="my-4">{{ $chat->comment }}</h3>
+                                        <h3 class="my-4">{{ $chat->my_user->name }}: {{ $chat->comment }}</h3>
                                     </div>
                                     <div class="text-muted small  align-self-center" style="text-align:right; text-decoration:none;">
                                         <button class="btn btn-rounded btn-info" >
@@ -65,7 +64,7 @@
                                         </h6>
                                         
                                         <p class="text-secondary">{{ $chat->created_at }}</p>  
-                                        <h3 class="my-4">{{ $chat->comment }}</h3>
+                                        <h3 class="my-4">自分: {{ $chat->comment }}</h3>
                                     </div>
                                     <div class="text-muted small  align-self-center" style="text-align:right; text-decoration:none;">
                                         <button class="btn btn-rounded btn-info" >
@@ -81,7 +80,6 @@
         </div>
         <!-- /Inner main -->
     </div>
-</div>
 </div>
 
 @endsection
