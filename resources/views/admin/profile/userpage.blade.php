@@ -71,7 +71,7 @@
             </div>
             <div class="profile-cover__info">
                 <ul class="nav">
-                    <li><strong>{{ count($posts) }}</strong>投稿数</li>
+                    <li><strong>{{ count($postcount) }}</strong>投稿数</li>
                     <li><strong><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follow_page',['id' => $users->id]) }}" class= "follow">{{ count($users->follows) }}</a></strong>フォロー</li>
                     <li><strong><a href="{{ action('App\Http\Controllers\Admin\ProfileController@follower_page',['id' => $users->id]) }}" class= "follow">{{ count($users->followers) }}</a></strong>フォロワー</li>
                 </ul>
@@ -178,6 +178,9 @@
                         <p class="mb-0 text-secondary">投稿はまだありません。</p>
                     </li>
                     @endforelse
+                    <div class="row m-3">
+                        {{ $posts->appends(request()->query())->links('pagination::bootstrap-4')}}
+                    </div>
 				</section>
         </div>
     </div>

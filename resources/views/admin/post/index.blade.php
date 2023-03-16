@@ -21,7 +21,6 @@
 	<div class="container-fluid ">
 		<div class="row ">
 			<div class="col-9 my-5" style="margin:0 auto;">
-				<!--- Post Form Begins -->
                 <form action="{{ action('App\Http\Controllers\Admin\PostController@index') }}" method="get">
                     <label class="col-md-2" style= "font-size:20px;">投稿検索</label>
                         <select type="text" class="" name="cond_title" value="{{ $cond_title }}">
@@ -132,13 +131,13 @@
                                         </li>
                                     </ul>
                                 </div>
-                                
                             </footer>
-                            <!-- post footer ends -->
                         </div>
                     @endforeach
+                    <div class="row m-3">
+                        {{ $posts->appends(request()->query())->links('pagination::bootstrap-4')}}
+                    </div>
 				</section>
-				<!-- Post Ends -->
 			</div>
 		</div>
 	</div>

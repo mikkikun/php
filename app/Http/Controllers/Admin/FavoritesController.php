@@ -72,7 +72,7 @@ class FavoritesController extends Controller
         
         $id = $request->id;
         $favorites = new Favorite;
-        $favorites = Favorite::where('post_id',$id)->get();
+        $favorites = Favorite::where('post_id',$id)->orderByDesc('updated_at')->paginate(10);
         return view('admin.post.favorite', ['favorites' => $favorites]);
     }
 
@@ -81,7 +81,7 @@ class FavoritesController extends Controller
         
         $id = $request->id;
         $favorites = new FavoriteComment;
-        $favorites = FavoriteComment::where('comment_id',$id)->get();
+        $favorites = FavoriteComment::where('comment_id',$id)->orderByDesc('updated_at')->paginate(10);
         return view('admin.comment.favorite', ['favorites' => $favorites]);
     }
 
@@ -90,7 +90,7 @@ class FavoritesController extends Controller
         
         $id = $request->id;
         $favorites = new FavoriteReplie;
-        $favorites = FavoriteReplie::where('replie_id',$id)->get();
+        $favorites = FavoriteReplie::where('replie_id',$id)->orderByDesc('updated_at')->paginate(10);
         return view('admin.comment.favorite', ['favorites' => $favorites]);
     }
 

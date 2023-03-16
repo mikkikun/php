@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Validator;
 
+
 class PostController extends Controller
 {
     public function home()
@@ -46,9 +47,9 @@ class PostController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Post::where('cardgame', $cond_title)->latest()->get();
+            $posts = Post::where('cardgame', $cond_title)->orderByDesc('updated_at')->paginate(5);
         } else {
-            $posts = Post::all()->sortByDesc('updated_at');
+            $posts = Post::orderByDesc('updated_at')->paginate(10);
         }
         return view('admin.post.index', ['posts' => $posts, 'cond_title' => $cond_title]);
     }
@@ -93,9 +94,9 @@ class PostController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
-            $posts = Post::where('cardgame', $cond_title)->latest()->get();
+            $posts = Post::where('cardgame', $cond_title)->orderByDesc('updated_at')->paginate(5);
         } else {
-            $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest('updated_at')->get();
+            $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->orderByDesc('updated_at')->paginate(10);
         }
         return view('admin.post.follow_pose', ['posts' => $posts, 'cond_title' => $cond_title]);
     }

@@ -50,9 +50,9 @@
                                         <div class="favorite_empty"></div>
                                     @endforelse
                                 </div>
-                                <!-- <div class="text-center p-3">
-                                    <a href="#" class="text-dark text-decoration-none">Show more <b class="caret"></b></a>
-                                </div> -->
+                                <div class="row m-3">
+                                    {{ $favorites->appends(request()->query())->links('pagination::bootstrap-4')}}
+                                </div>
                             </div>
                         </div>
                     </div>

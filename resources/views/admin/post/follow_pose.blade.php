@@ -132,12 +132,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                                
                             </footer>
                         </div>
                     @empty
                         <div class="follow_empty"></div>
                     @endforelse
+                    <div class="row m-3">
+                        {{ $posts->appends(request()->query())->links('pagination::bootstrap-4')}}
+                    </div>
 				</section>
 			</div>
 		</div>

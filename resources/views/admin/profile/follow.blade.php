@@ -56,13 +56,11 @@
                                         @elseif($discrimination == "follower")
                                             <div class="follower_empty"></div>
                                         @endif
-                                    
-                                    
                                     @endforelse
+                                    <div class="row m-3">
+                                        {{ $users->appends(request()->query())->links('pagination::bootstrap-4')}}
+                                    </div>
                                 </div>
-                                <!-- <div class="text-center p-3">
-                                    <a href="#" class="text-dark text-decoration-none">Show more <b class="caret"></b></a>
-                                </div> -->
                             </div>
                         </div>
                     </div>

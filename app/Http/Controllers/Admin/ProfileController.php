@@ -74,8 +74,9 @@ class ProfileController extends Controller
     public function userpage(Request $request)
     {
         $users = User::find($request->id);
-        $posts = Post::where('user_id', $request->id)->get();
-        return view('admin.profile.userpage', ['posts' => $posts,'users' => $users]);
+        $posts = Post::where('user_id', $request->id)->orderByDesc('updated_at')->paginate(10);
+        $postcount = Post::where('user_id', $request->id)->get();
+        return view('admin.profile.userpage', ['posts' => $posts ,'users' => $users,'postcount' => $postcount]);
     }
 
     public function follow(Request $request)
@@ -109,7 +110,7 @@ class ProfileController extends Controller
     public function follow_page(Request $request)
     {
         $id = $request->id;
-        $users = User::query()->whereIn('id', User::find($id)->follows()->pluck('followed_id'))->latest()->get();
+        $users = User::query()->whereIn('id', User::find($id)->follows()->pluck('followed_id'))->orderByDesc('updated_at')->paginate(10);
         $discrimination = "follow";
         return view('admin.profile.follow', ['users' => $users,'discrimination' => $discrimination]);
     }

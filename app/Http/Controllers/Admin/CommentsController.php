@@ -19,7 +19,7 @@ class CommentsController extends Controller
         // $comments = Comment::query()->whereIn('post_id', Post::find($request->post_id)->comments()->pluck('post_id'))->latest('created_at')->get();
         $comments = Comment::with(['user', 'replies', 'replies.user'])
             ->where('comments.post_id', $request->post_id)
-            ->latest('updated_at')->get();
+            ->latest('updated_at')->orderByDesc('updated_at')->paginate(10);
         // $replies = Replie::query()->whereIn('comment_id', Comment::find($comments->id)->replies()->pluck('comment_id'))->latest('created_at')->get();
         return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }

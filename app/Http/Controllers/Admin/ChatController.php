@@ -58,7 +58,7 @@ class ChatController extends Controller
         ->select('user_id', 'my_id', Chat::raw('MAX(created_at)As created_at'),Chat::raw('MAX(comment)As comment'))
         ->orderBy('created_at', 'desc')
         ->groupBy('user_id', 'my_id')
-        ->get();
+        ->orderByDesc('updated_at')->paginate(5);
         // ->groupBy('user_id', 'my_id')->where('user_id', '!==', 'my_id')->get('user_id', 'my_id');
         // dd($chats);
         return view('admin.chat.list', ['chats' => $chats]);

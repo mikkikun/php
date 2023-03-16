@@ -76,6 +76,9 @@
                         </div>
                     @endif
                 @endforeach
+                <div class="row m-3">
+                    {{ $chats->appends(request()->query())->links('pagination::bootstrap-4')}}
+                </div>
             </div>
         </div>
         <!-- /Inner main -->
