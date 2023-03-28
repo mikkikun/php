@@ -10,6 +10,13 @@ services:
       dockerfile: ./docker/php/Dockerfile
     volumes:
       - ./src/:/var/www/html
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE= pf
+      - DB_USERNAME= dbuser
+      - DB_PASSWORD=
 
   web:
     build:
@@ -36,3 +43,4 @@ services:
       TZ: 'Asia/Tokyo'
     volumes:
       - mysql-volume:/var/lib/mysql
+    command: mysqld --wait_timeout=28800 --interactive_timeout=28800 --max_allowed_packet=256M
