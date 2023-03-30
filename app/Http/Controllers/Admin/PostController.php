@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
@@ -31,8 +32,10 @@ class PostController extends Controller
         $posts->user_id = Auth::id();
         $form = $request->all();
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $posts->image_path = basename($path);
+            // $path = $request->file('image')->store('public/image');
+            // $posts->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('image', $request->file('image'), 'public');
+            $posts->image_path = Storage::disk('s3')->url($path);
         } else {
             $posts->image_path = null;
         }
