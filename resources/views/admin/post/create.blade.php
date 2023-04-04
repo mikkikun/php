@@ -34,6 +34,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    
                                     <label  class="my-2" style= "font-size:20px;">本文</label>
                                     <textarea class="form-control @error('body') is-invalid @enderror" name="body"  autocomplete="text" rows="4" placeholder="255文字以内"></textarea>
                                     @error('body')
@@ -45,7 +46,7 @@
                             </div>
                             <div class="form-group row mb-0 my-2">
                                 <div class="col-md-12 text-right">
-                                    <select type="text" class="form-control @error('select') is-invalid @enderror" name="cardgame"  autocomplete="select" >
+                                    <select type="text" class="form-control @error('cardgame') is-invalid @enderror" name="cardgame"  autocomplete="select" >
                                         <option value="">選択してください</option>
                                         <option value="遊戯王">遊戯王</option>
                                         <option value="遊戯王ラッシュデュエル">遊戯王ラッシュデュエル</option>
@@ -59,7 +60,7 @@
                                         <option value="ウィクロス">ウィクロス</option>
                                         <option value="その他">その他</option>
                                     </select>
-                                    @error('select')
+                                    @error('cardgame')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

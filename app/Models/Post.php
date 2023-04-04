@@ -19,6 +19,14 @@ class Post extends Model
         'cardgame'  => 'required'
     );
 
+    public static $rules_update = array(
+        'title' => ['required', 'string', 'max:25'],
+        'body' => ['required', 'string', 'max:255'],
+        'cardgame'  => 'required'
+        
+    );
+    
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');

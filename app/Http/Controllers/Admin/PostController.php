@@ -69,7 +69,7 @@ class PostController extends Controller
 
     public function update(Request $request)
     {
-        // $this->validate($request, Post::$rules);
+        $this->validate($request, Post::$rules);
         $posts = Post::find($request->id);
         $post_form = $request->all();
         if (isset($post_form['image'])) {
