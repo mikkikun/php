@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Follow;
 use App\Models\Replie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {

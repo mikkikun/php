@@ -70,7 +70,7 @@
                                 <div class="">
                                     @if($data->user->profile_image !== null)
                                         <a class="text-decoration-none" href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
-                                            <img class="rounded-circle" src="{{ asset('storage/profile_image').'/'.$data->user->profile_image }}" width="50" height="50" alt="...">
+                                            <img class="rounded-circle" src="{{ $data->user->profile_image }}" width="50" height="50" alt="...">
                                         </a>
                                     @else
                                         <a class="text-decoration-none" href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
