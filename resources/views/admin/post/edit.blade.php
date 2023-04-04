@@ -64,12 +64,12 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="col-md-12 p-3 w-100 d-flex">
+                                <div class="col-md-12 p-3 w-100 text-left">
                                     <label>画像</label>
                                     <input type="file" class="" name="image" >
                                     @if($post_form->image_path !== null)
-                                        <p>設定中:<img src="{{ asset('storage/image').'/'.$post_form->image_path }}" width="150" height="150">
-                                            <label class="form-check-label">
+                                        <p>設定中:<img src="{{ $post_form->image_path }}" width="150" height="150">
+                                            <label class="form-check-label col-md-12">
                                                 <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
                                             </label>
                                         </p>

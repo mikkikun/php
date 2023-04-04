@@ -92,7 +92,7 @@
                             </div>
                             <hr class="my-1 row m-0">
                                 @if($data->image_path !== null)
-                                    <img src="{{ asset('storage/image').'/'.$data->image_path }}" width="150" height="150">
+                                    <img src="{{$data->image_path }}" width="150" height="150">
                                 @endif
                             <footer class="row m-3">
                                 <div class="my-1">
