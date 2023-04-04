@@ -73,8 +73,10 @@ class PostController extends Controller
         $posts = Post::find($request->id);
         $post_form = $request->all();
         if (isset($post_form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $posts->image_path = basename($path);
+            // $path = $request->file('image')->store('public/image');
+            // $posts->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('image', $request->file('image'), 'public');
+            $posts->image_path = Storage::disk('s3')->url($path);
             unset($post_form['image']);
         } elseif (0 == strcmp($request->remove, 'true')) {
             $posts->image_path = null;
