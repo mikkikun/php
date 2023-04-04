@@ -33,7 +33,7 @@
         <div class="panel profile-cover">
             <div class="profile-cover__img">
                 @if($users->profile_image !== null)
-                    <img src="{{ asset('storage/profile_image').'/'.$users->profile_image }}" class="rounded-circle" width="120" height="120">    
+                    <img src="{{$users->profile_image }}" class="rounded-circle" width="120" height="120">    
                 @else
                     <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="120" height="120">
                 @endif
@@ -100,7 +100,7 @@
                                 <div class="">
                                     @if($data->user->profile_image !== null)
                                         <a class="text-decoration-none" href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
-                                            <img class="rounded-circle" src="{{ asset('storage/profile_image').'/'.$data->user->profile_image }}" width="50" height="50" alt="...">
+                                            <img class="rounded-circle" src="{{$data->user->profile_image }}" width="50" height="50" alt="...">
                                         </a>
                                     @else
                                         <a class="text-decoration-none" href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $data->user->id]) }}">
@@ -123,7 +123,7 @@
                             </div>
                             <hr class="my-1 row m-0">
                                 @if($data->image_path !== null)
-                                    <img src="{{ asset('storage/image').'/'.$data->image_path }}" width="150" height="150">
+                                    <img src="{{$data->image_path }}" width="150" height="150">
                                 @endif
                             <!-- post footer begins -->
                             <footer class="row m-3">

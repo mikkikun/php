@@ -16,7 +16,7 @@
                                 
                                     @if($users_form->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users_form->id]) }}">
-                                            <img src="{{ asset('storage/profile_image').'/'.$users_form->profile_image }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{ $users_form->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users_form->id]) }}">
@@ -24,7 +24,7 @@
                                         </a>
                                     @endif
                                     <div class="ml-2 d-flex flex-column">
-                                        <p class="mb-0">　<a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users_form->id]) }}"style= "text-decoration: none" >{{ $users_form->name }}</a></p>
+                                        <p class="mb-0"><a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users_form->id]) }}"style= "text-decoration: none" >{{ $users_form->name }}</a></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -44,19 +44,19 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 p-3 w-100 d-flex">
+                            <div class="form-group row mb-0 my-2">
+                                <div class="col-md-12 p-5 w-100">
                                     <label>画像</label>
-                                    <input type="file" class="" name="image" >
+                                    <input type="file" class="p-2" name="image" >
                                     @if($users_form->profile_image !== null)
-                                        <p>設定中:<img src="{{ asset('storage/profile_image').'/'.$users_form->profile_image }}" width="150" height="150">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
+                                        <p>設定中:<img src="{{$users_form->profile_image }}" width="150" height="150">
+                                            <label class="form-check-label col-md-12 p-2">
+                                                <input type="checkbox" class="form-check-input p-2" name="remove" value="true">画像を削除
                                             </label>
                                         </p>
                                     @endif
                                 </div>
-                                <div class="col-md-12 p-3 w-100 d-flex">
+                                <div class="col-md-12 p-3 w-100 text-right">
                                     <input type="hidden" name="id" value="{{ $users_form->id }}">
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary">

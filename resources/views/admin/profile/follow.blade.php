@@ -20,7 +20,7 @@
                                         <div class="list-group-item d-flex align-items-center">
                                             @if($user->profile_image !== null)
                                                 <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $user->id]) }}">
-                                                    <img src="{{ asset('storage/profile_image').'/'.$user->profile_image }}" class="rounded-circle" width="50" height="50">
+                                                    <img src="{{$user->profile_image }}" class="rounded-circle" width="50" height="50">
                                                 </a>
                                             @else
                                                 <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $user->id]) }}">
