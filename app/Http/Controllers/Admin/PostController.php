@@ -62,7 +62,7 @@ class PostController extends Controller
         $users = User::find(Auth::id());
         $posts = Post::find($request->id);
         if (empty($posts)) {
-        abort(404);    
+        abort(404);
         }
         return view('admin.post.edit', ['post_form' => $posts , 'users' => $users]);
     }

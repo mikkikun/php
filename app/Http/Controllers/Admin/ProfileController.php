@@ -31,15 +31,18 @@ class ProfileController extends Controller
             $users->profile = $request->profile;
         }
         if (isset($users_form['image'])) {
-            $path = $request->file('image')->store('public/profile_image');
-            $users->profile_image = basename($path);
+            // $path = $request->file('image')->store('public/profile_image');
+            // $users->profile_image = basename($path);
+            $path = Storage::disk('s3')->putFile('profile_image', $request->file('image'), 'public');
+            $users->profile_image = Storage::disk('s3')->url($path);
             unset($users_form['image']);
         } elseif (0 == strcmp($request->remove, 'true')) {
             $users->profile_image = null;
         }
         $users->save();
-        $posts = Post::where('user_id', $request->id)->get();
-        return view('admin.profile.userpage', ['posts' => $posts,'users' => $users]);
+        $posts = Post::where('user_id', $request->id)->orderByDesc('updated_at')->paginate(10);
+        $postcount = Post::where('user_id', $request->id)->get();
+        return view('admin.profile.userpage', ['posts' => $posts ,'users' => $users,'postcount' => $postcount]);
     }
 
     public function deletepage(Request $request)
