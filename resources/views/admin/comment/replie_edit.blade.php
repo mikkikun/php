@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 my-5">
             <div class="card">
-                <div class="card-header">コメント編集ページ</div>
+                <div class="card-header">コメントにコメントの編集ページ</div>
                     <div class="card-body">
                         <form method="POST" action="{{ action('App\Http\Controllers\Admin\CommentsController@replie_update', ['replie' => $replie ,'posts' => $posts , 'users' => $users]) }}" enctype="multipart/form-data">
                             @csrf
@@ -35,12 +35,12 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-0 my-2">
-                                <div class="col-md-12 p-3 w-100 d-flex">
+                                <div class="col-md-12 p-5 w-100">
                                     <label>画像</label>
                                     <input type="file" class="" name="image" >
                                     @if($replie->image_path !== null)
-                                        <p>設定中:<img src="{{ asset('storage/replie').'/'.$replie->image_path }}" width="150" height="150">
-                                            <label class="form-check-label">
+                                        <p>設定中:<img src="{{$replie->image_path }}" width="150" height="150">
+                                            <label class="form-check-label col-md-12 p-2">
                                                 <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
                                             </label>
                                         </p>

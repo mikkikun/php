@@ -34,8 +34,6 @@ class CommentsController extends Controller
         $comments->body = $request->body;
         $form = $request->all();
         if (isset($form['image_path'])) {
-            // $path = $request->file('image_path')->store('public/image');
-            // $comments->image_path = basename($path);
             $path = Storage::disk('s3')->putFile('comment', $request->file('image_path'), 'public');
             $comments->image_path = Storage::disk('s3')->url($path);
         } else {
@@ -69,8 +67,6 @@ class CommentsController extends Controller
         $comment_form = $request->all();
         $comments->body = $request->body;
         if (isset($comment_form['image'])) {
-            // $path = $request->file('image')->store('public/image');
-            // $comments->image_path = basename($path);
             $path = Storage::disk('s3')->putFile('comment', $request->file('image'), 'public');
             $comments->image_path = Storage::disk('s3')->url($path);
             unset($comment_form['image']);
@@ -112,16 +108,17 @@ class CommentsController extends Controller
         $users = User::find($request->users);
         $comments = Comment::query()
                     ->whereIn('post_id', $posts->comments()->pluck('post_id'))
-                    ->latest('created_at')
-                    ->get();
+                    ->latest('updated_at')->orderByDesc('updated_at')->paginate(10);
         $replies = new Replie;
         $replies->user_id = Auth::id();
         $replies->comment_id = $request->comments;
         $replies->body = $request->body;
         $form = $request->all();
         if (isset($form['image_path'])) {
-            $path = $request->file('image_path')->store('public/replie');
-            $replies->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('replie', $request->file('image_path'), 'public');
+            $replies->image_path = Storage::disk('s3')->url($path);
+            // $path = $request->file('image_path')->store('public/replie');
+            // $replies->image_path = basename($path);
         } else {
             $replies->image_path = null;
         }
@@ -152,8 +149,8 @@ class CommentsController extends Controller
         $replie_form = $request->all();
         $replie->body = $request->body;
         if (isset($replie_form['image'])) {
-            $path = $request->file('image')->store('public/replie');
-            $replie->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('replie', $request->file('image'), 'public');
+            $replie->image_path = Storage::disk('s3')->url($path);
             unset($replie_form['image']);
         } elseif (0 == strcmp($request->remove, 'true')) {
             $replie->image_path = null;
@@ -161,8 +158,7 @@ class CommentsController extends Controller
         $replie->save();
         $comments = Comment::query()
                     ->whereIn('post_id', $posts->comments()->pluck('post_id'))
-                    ->latest('updated_at')
-                    ->get();
+                    ->latest('updated_at')->orderByDesc('updated_at')->paginate(10);
         return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 

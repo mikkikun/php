@@ -249,7 +249,7 @@
                                             <div class="card-body">
                                                 <h3>{!! nl2br(e($replie->body)) !!}</h3>
                                                 @if($replie->image_path !== null)
-                                                    <img src="{{ asset('storage/replie').'/'.$replie->image_path }}" width="150" height="150">
+                                                    <img src="{{$replie->image_path }}" width="150" height="150">
                                                 @endif
                                             </div>
                                             <div class="card-footer py-1 d-flex justify-content-end bg-white">
