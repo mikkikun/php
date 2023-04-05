@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Replie;
+use Illuminate\Support\Facades\Storage;
 
 class CommentsController extends Controller
 {
@@ -33,8 +34,10 @@ class CommentsController extends Controller
         $comments->body = $request->body;
         $form = $request->all();
         if (isset($form['image_path'])) {
-            $path = $request->file('image_path')->store('public/image');
-            $comments->image_path = basename($path);
+            // $path = $request->file('image_path')->store('public/image');
+            // $comments->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('comment', $request->file('image_path'), 'public');
+            $comments->image_path = Storage::disk('s3')->url($path);
         } else {
             $comments->image_path = null;
         }
@@ -66,8 +69,10 @@ class CommentsController extends Controller
         $comment_form = $request->all();
         $comments->body = $request->body;
         if (isset($comment_form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $comments->image_path = basename($path);
+            // $path = $request->file('image')->store('public/image');
+            // $comments->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('comment', $request->file('image'), 'public');
+            $comments->image_path = Storage::disk('s3')->url($path);
             unset($comment_form['image']);
         } elseif (0 == strcmp($request->remove, 'true')) {
             $comments->image_path = null;
@@ -75,8 +80,7 @@ class CommentsController extends Controller
         $comments->save();
         $comments = Comment::query()
                     ->whereIn('post_id', $posts->comments()->pluck('post_id'))
-                    ->latest('updated_at')
-                    ->get();
+                    ->latest('updated_at')->orderByDesc('updated_at')->paginate(10);
         return view('admin.comment.index', ['posts' => $posts,'users' => $users ,'comments' => $comments]);
     }
 

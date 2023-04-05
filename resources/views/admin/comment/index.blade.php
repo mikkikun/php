@@ -27,7 +27,7 @@
                 <div class="card-haeder p-3 w-100 d-flex ">
                     @if($users->profile_image != null)
                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
-                            <img src="{{ asset('storage/profile_image').'/'.$users->profile_image }}" class="rounded-circle" width="50" height="50">
+                            <img src="{{$users->profile_image }}" class="rounded-circle" width="50" height="50">
                         </a>
                     @else
                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
@@ -45,7 +45,7 @@
                     <h6>{{ $posts->title}}（{{ $posts->cardgame}}）</h6>
                     <h3>{{ $posts->body}}</h3>
                         @if($posts->image_path !== null)
-                            <img src="{{ asset('storage/image').'/'.$posts->image_path }}" width="150" height="150">
+                            <img src="{{$posts->image_path }}" width="150" height="150">
                         @endif
                 </div>
                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
@@ -102,7 +102,7 @@
                                 <div class="col-md-12 p-3 w-100 d-flex">
                                     @if(Auth::user()->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => Auth::user()->id]) }}">
-                                            <img src="{{ asset('storage/profile_image/' .Auth::user()->profile_image) }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => Auth::user()->id]) }}">
@@ -155,7 +155,7 @@
                                 <div class="card-haeder p-3 w-100 d-flex">
                                     @if($comment->user->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comment->user->id]) }}">
-                                            <img src="{{ asset('storage/profile_image').'/'.$comment->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{ $comment->user->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $comment->user->id]) }}">
@@ -174,7 +174,7 @@
                                 <div class="card-body">
                                     <h3>{!! nl2br(e($comment->body)) !!}</h3>
                                     @if($comment->image_path !== null)
-                                        <img src="{{ asset('storage/image').'/'.$comment->image_path }}" width="150" height="150">
+                                        <img src="{{$comment->image_path }}" width="150" height="150">
                                     @endif
                                 </div>
                                 <div class="card-footer py-1 d-flex justify-content-end bg-white">
@@ -230,7 +230,7 @@
                                             <div class="card-haeder p-3 w-100 d-flex">
                                                 @if($replie->user->profile_image !== null)
                                                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $replie->user->id]) }}">
-                                                        <img src="{{ asset('storage/profile_image').'/'.$replie->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                                                        <img src="{{$replie->user->profile_image }}" class="rounded-circle" width="50" height="50">
                                                     </a>
                                                 @else
                                                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $replie->user->id]) }}">

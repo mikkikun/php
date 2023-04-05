@@ -15,7 +15,7 @@
                                 
                                     @if($users->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
-                                            <img src="{{ asset('storage/profile_image').'/'.$users->profile_image }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{$users->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">

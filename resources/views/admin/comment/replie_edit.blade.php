@@ -13,7 +13,7 @@
                                 <div class="col-md-12 p-3 w-100 d-flex">
                                     @if(Auth::user()->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $replie->user->id]) }}">
-                                            <img src="{{ asset('storage/profile_image').'/'.Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $replie->user->id]) }}">
