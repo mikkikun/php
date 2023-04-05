@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Chat;
+use Illuminate\Support\Facades\Storage;
 
 class ChatController extends Controller
 {
@@ -36,8 +37,10 @@ class ChatController extends Controller
         $chats->my_id = auth()->user()->id;
         $chats->user_id = $request->id;
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/chat');
-            $chats->image_path = basename($path);
+            $path = Storage::disk('s3')->putFile('chat', $request->file('image'), 'public');
+            $chats->image_path = Storage::disk('s3')->url($path);
+            // $path = $request->file('image')->store('public/chat');
+            // $chats->image_path = basename($path);
         } else {
             $chats->image_path = null;
         }

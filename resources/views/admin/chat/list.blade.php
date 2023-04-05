@@ -16,7 +16,7 @@
                                 <div class="media forum-item">
                                     @if($chat->my_user->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $chat->my_user->id]) }}">
-                                            <img src="{{ asset('storage/profile_image').'/'.$chat->my_user->profile_image }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{$chat->my_user->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $chat->my_user->id]) }}">
@@ -48,7 +48,7 @@
                                 <div class="media forum-item">
                                     @if($chat->user->profile_image !== null)
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $chat->user->id]) }}">
-                                            <img src="{{ asset('storage/profile_image').'/'.$chat->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                                            <img src="{{$chat->user->profile_image }}" class="rounded-circle" width="50" height="50">
                                         </a>
                                     @else
                                         <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $chat->user->id]) }}">

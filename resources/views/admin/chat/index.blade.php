@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-haeder p-3 w-100 d-flex">
                 @if(Auth::user()->profile_image !== null)
-                    <img src="{{ asset('storage/profile_image').'/'.Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
+                    <img src="{{Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
                 @else
                     <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="50" height="50">
                 @endif
@@ -17,7 +17,7 @@
             <div class="card-body">
                 <h3>{{ $item->comment }}</h3>
                 @if($item->image_path !== null)
-                    <img src="{{ asset('storage/chat').'/'.$item->image_path }}" width="150" height="150">
+                    <img src="{{$item->image_path }}" width="150" height="150">
                 @endif
             </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="card-haeder p-3 w-100 d-flex">
                 @if($users->profile_image !== null)
                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
-                        <img src="{{ asset('storage/profile_image').'/'.$users->profile_image }}" class="rounded-circle" width="50" height="50">
+                        <img src="{{$users->profile_image }}" class="rounded-circle" width="50" height="50">
                     </a>
                 @else
                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
@@ -45,7 +45,7 @@
             <div class="card-body">
                 <h3>{{ $item->comment }}</h3>
                 @if($item->image_path !== null)
-                    <img src="{{ asset('storage/chat').'/'.$item->image_path }}" width="150" height="150">
+                    <img src="{{$item->image_path }}" width="150" height="150">
                 @endif
             </div>
         </div>

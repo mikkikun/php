@@ -22,7 +22,7 @@
                             @if($item->my_id == Auth::user()->id)
                                 <li class="left clearfix"><span class="chat-img pull-left">
                                     @if(Auth::user()->profile_image !== null)
-                                        <img src="{{ asset('storage/profile_image').'/'.Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
+                                        <img src="{{Auth::user()->profile_image }}" class="rounded-circle" width="50" height="50">
                                     @else
                                         <img src="{{ asset('storage/profile_image/nodata.png') }}" class="rounded-circle" width="50" height="50">
                                     @endif
@@ -35,7 +35,7 @@
                                         <p>
                                             <h5>{{ $item->comment }}</h5>
                                             @if($item->image_path !== null)
-                                                <img src="{{ asset('storage/chat').'/'.$item->image_path }}" width="150" height="150">
+                                                <img src="{{$item->image_path }}" width="150" height="150">
                                             @endif
                                         </p>
                                     </div>
@@ -49,7 +49,7 @@
                                 <li class="right clearfix"><span class="chat-img pull-right">
                                 @if($users->profile_image !== null)
                                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
-                                        <img src="{{ asset('storage/profile_image').'/'.$users->profile_image }}" class="rounded-circle" width="50" height="50">
+                                        <img src="{{$users->profile_image }}" class="rounded-circle" width="50" height="50">
                                     </a>
                                 @else
                                     <a href="{{ action('App\Http\Controllers\Admin\ProfileController@userpage', ['id' => $users->id]) }}">
@@ -100,33 +100,3 @@
     </div>
 </div>
 @endsection
-
-
-<!-- <div class="chat-container row justify-content-center">
-    <div class="chat-area">
-        <div class="card">
-            <div class="card-header">チャット</div>
-                <div class="card-body chat-card">
-                    @foreach ($chats as $item)
-                    @include('admin.chat.index', ['item' => $item])
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<form method="POST" action="{{ action('App\Http\Controllers\Admin\ChatController@add', ['id' => $users->id]) }}" enctype="multipart/form-data">
-    @csrf
-    <div class="comment-container row justify-content-center">
-        <div class="input-group comment-area">
-            <textarea class="form-control" id="comment" name="comment" placeholder="push massage (shift + Enter)"
-                aria-label="With textarea"
-                onkeydown="if(event.shiftKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
-            <label>画像</label>
-            <input type="file" class="" name="image">
-            {{ csrf_field() }}
-            <button type="submit" id="submit" class="btn btn-outline-primary comment-btn">送信</button>
-        </div>
-    </div>
-</form> 
