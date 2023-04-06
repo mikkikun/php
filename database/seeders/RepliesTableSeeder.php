@@ -41,7 +41,7 @@ class RepliesTableSeeder extends Seeder
                 'user_id' => '3',
                 'comment_id' => '3',
                 'body' => 'メッセージ待ってます',
-                'image_path' => 'Dptx1mHUUAIFijk.jpeg',
+                'image_path' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/replie/Dptx1mHUUAIFijk.jpeg',
                 'created_at' => '2023-02-21 11:11:16',
                 'updated_at' => '2023-02-21 11:11:16',
                 'deleted_at' =>NULL
@@ -50,7 +50,7 @@ class RepliesTableSeeder extends Seeder
                 'user_id' => '3',
                 'comment_id' => '4',
                 'body' => 'メッセージ待ってます',
-                'image_path' => 'Dptx1XcVsAIp7eD.jpeg',
+                'image_path' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/replie/Dptx1XcVsAIp7eD.jpeg',
                 'created_at' => '2023-02-21 11:11:16',
                 'updated_at' => '2023-02-21 11:11:16',
                 'deleted_at' =>NULL
@@ -59,7 +59,7 @@ class RepliesTableSeeder extends Seeder
                 'user_id' => '3',
                 'comment_id' => '5',
                 'body' => 'メッセージ待ってます',
-                'image_path' => 'Dptx2FfUUAIq9BO.jpeg',
+                'image_path' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/replie/Dptx2FfUUAIq9BO.jpeg',
                 'created_at' => '2023-02-21 11:11:17',
                 'updated_at' => '2023-02-21 11:11:17',
                 'deleted_at' =>NULL
@@ -68,7 +68,7 @@ class RepliesTableSeeder extends Seeder
                 'user_id' => '3',
                 'comment_id' => '3',
                 'body' => 'メッセージ待ってます',
-                'image_path' => 'Dptx11OV4AE6RRm.jpeg',
+                'image_path' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/replie/Dptx11OV4AE6RRm.jpeg',
                 'created_at' => '2023-02-21 11:11:18',
                 'updated_at' => '2023-02-21 11:11:18',
                 'deleted_at' =>NULL

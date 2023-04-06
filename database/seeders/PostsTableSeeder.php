@@ -144,7 +144,7 @@ class PostsTableSeeder extends Seeder
                 'title' => 'ポケカ勢と繋がりたい',
                 'body' => '友達募集！！',
                 'cardgame' => 'ポケモンカード',
-                'image_path' => 'PCG_wallpaper_room_day.jpg',
+                'image_path' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/image/PCG_wallpaper_room_day.jpg',
                 'created_at' => '2023-02-21 00:44:20',
                 'updated_at' => '2023-02-21 00:44:20',
                 'deleted_at' =>NULL
