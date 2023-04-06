@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user2@test.com',
                 'password' => Hash::make('password'),
                 'profile' => 'こんにちは。東京に住んでいます。一緒に遊戯王できる人を探しています。メッセージください。',
-                'profile_image' => 'publicdomainq-0013784tqc.jpg 00-00-18-272.jpg',
+                'profile_image' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/profile_image/publicdomainq-0013784tqc.jpg 00-00-18-272.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'deleted_at' =>NULL
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user3@test.com',
                 'password' => Hash::make('password'),
                 'profile' => 'こんにちは。東京に住んでいます。ポケカ歴1年。大会によく出てます。',
-                'profile_image' => '2303.jpg',
+                'profile_image' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/profile_image/2303.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'deleted_at' =>NULL
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user4@test.com',
                 'password' => Hash::make('password'),
                 'profile' => '最近、昔ハマっていたマジックギャザリングをしています。プレイ仲間募集！！',
-                'profile_image' => 'back_image.jpeg',
+                'profile_image' => 'https://cardmatch-s3.s3.ap-northeast-1.amazonaws.com/profile_image/back_image.jpeg',
                 'created_at' => now(),
                 'updated_at' => now(),
                 'deleted_at' =>NULL
