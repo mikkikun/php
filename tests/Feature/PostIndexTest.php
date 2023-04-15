@@ -35,26 +35,5 @@ class PostIndexTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    /** @test */
-    public function 投稿一覧画面に全ての投稿データが表示される()
-    {
-        // $user = User::factory()->create();
-        // $this->actingAs($user);
-        // $firstPost = Post::factory()->create([
-        //     'user_id' => $user->id,
-        //     // 'content' => 'firstPost'
-        // ]);
-        // $secondPost = Post::factory()->create([
-        //     'user_id' => $user->id,
-        //     // 'content' => 'secondPost'
-        // ]);
-        // $thirdPost = Post::factory()->create([
-        //     'user_id' => $user->id,
-        //     // 'content' => 'thirdPost'
-        // ]);
-        // $response = $this->get(route('login'));
-        // $response->assertSee($firstPost->content, $thirdPost->content, $secondPost->content);
-    }
-
 
 }
