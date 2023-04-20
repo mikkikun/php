@@ -71,7 +71,7 @@
                             パスワードを忘れた場合はこちら
                         </a>
                     @endif
-                    <form methods="POST" action="{{ route('guestLogin') }}" class="d-flex justify-content-center login_container">
+                    <form methods="POST" action="{{ route('login') }}" class="d-flex justify-content-center login_container">
                         @csrf
                         <button class="btn login_btn2">ゲストログインする</button>
                     </form>
@@ -81,79 +81,4 @@
 	</div>
 </body>
 </html>
-
-<!-- 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('ログイン') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="info@example.com">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('パスワード') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="8文字以上の英数字を入力してください">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('ログイン状態を保持') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('ログイン') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('パスワードを忘れた場合はこちら') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                    <form methods="POST" action="{{ route('guestLogin') }}">
-                        @csrf
-                        <button>ゲストログインする</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  -->
 @endsection
