@@ -14,7 +14,6 @@ set('git_tty', false);
 add('shared_files', []);
 add('shared_dirs', []);
 
-
 // Webサーバーによる書き込み可能なディレクトリ
 add('writable_dirs', []);
 set('allow_anonymous_stats', false);
