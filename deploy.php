@@ -48,7 +48,6 @@ task('deploy:update_composer', function () {
   run('composer update --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader');
 })->desc('Update composer packages');
 
-
 task('deploy:change_php_version', function () {
   run('sudo update-alternatives --set php /usr/bin/php7.4');
 })->desc('Change PHP version');
