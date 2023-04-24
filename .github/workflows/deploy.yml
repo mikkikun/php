@@ -8,28 +8,130 @@ on:
 
 jobs:
   laravel-tests:
-
+  
+    name: phpunit test
     runs-on: ubuntu-latest
-
+    
+    #DB側（MySQLコンテナ）設定
+    services:
+      mysql: 
+        image: mysql:8.0.19
+        ports:
+          - 3306:3306
+        env:  
+          MYSQL_ROOT_PASSWORD: ???????
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: ?????
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10 #optionsでMySQLが起動したかヘルスチェックするようにします。
+   
+    #アプリ側（テスト用DB）設定
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: cardmatch-web.crswfwztjd3u.ap-northeast-1.rds.amazonaws.com
+      DB_PORT: 3306
+      DB_DATABASE: cardmatch_test
+      DB_USERNAME: root
+      DB_PASSWORD: Password1
+    
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
-        php-version: '8.0'
+        php-version: '7.4'
     - uses: actions/checkout@v3
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Generate key
-      run: php artisan key:generate
-    - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
+    - name: Setup PHP 7.4
+      run: sudo update-alternatives --set php /usr/bin/php7.4
+      
+    - name: cache vendor 
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ./vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
+            
+    - name: composer install
+      shell: bash -xe {0} # custom shell
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: cd backend && composer install -n --prefer-dist
+      
+    - name: composer dump autoload　#requireを使用せず、どこからでも対象のソースやクラスを呼び出せるようにする。
+      shell: bash -xe {0} 
+      run: cd backend && composer dump-autoload
+        
+    - name: generate key #アプリケーションキー作成
+      shell: bash -xe {0} 
+      run: cd backend && php artisan key:generate --env=testing
+    - name: migrate #DB作成
+      shell: bash -xe {0} 
       env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
+        DB_HOST: 127.0.0.1
+      run: cd backend && php artisan migrate --force
+        
+    - name: unit test #テスト実行
+      shell: bash -xe {0} 
+      env:
+        DB_HOST: 127.0.0.1
+      run: cd backend && ./vendor/bin/phpunit
+      
+    #ここから自動デプロイのワークフローを定義しています。
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: laravel-tests #自動テストが成功したらデプロイを実行するように。
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP 7.4 　
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+        
+      - name: cache vendor
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ./vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+            
+      - name: composer install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: cd backend && composer install -n --prefer-dist
+      
+      - name: setup ssh # ssh接続の為、sshキーをコピー
+        run: | 
+          cd backend &&
+          mkdir -p /home/runner/.ssh
+          touch /home/runner/.ssh/id_rsa
+          echo "${{ secrets.SSH_DEPLOY_KEY }}" > /home/runner/.ssh/id_rsa
+          chmod 600 /home/runner/.ssh/id_rsa     
+          
+      - name: add known hosts # known_hostsに追加
+        run: ssh-keyscan 34.32.12.66 >> ~/.ssh/known_hosts
+        
+      - name: composer require deployer/deployer #depコマンドを叩けるようにする。
+        run: cd backend && composer require deployer/deployer --dev
+        
+      - name: deploy #デプロイ実行
+        env:
+          AWS_ACCESS_KEY_ID=AKIAVJNYP7G4Z5HX464Y
+          AWS_SECRET_ACCESS_KEY=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
+          AWS_DEFAULT_REGION=ap-northeast-1
+          AWS_BUCKET=cardmatch-s3
+          AWS_USE_PATH_STYLE_ENDPOINT=false
+        run: cd backend && vendor/bin/dep deploy 18.183.217.103 #LaravelWeb1はdeploy.phpで指定したstage。
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
