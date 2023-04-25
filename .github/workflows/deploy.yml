@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - name: Setup PHP 7.4
-        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Setup PHP 7.4.33
+        run: sudo update-alternatives --set php /usr/bin/php7.4.33
 
       - name: cache vendor
         id: cache
@@ -41,8 +41,8 @@ jobs:
     needs: unit-test
     steps:
       - uses: actions/checkout@v2
-      - name: Setup PHP 7.4
-        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Setup PHP 7.4.33
+        run: sudo update-alternatives --set php /usr/bin/php7.4.33
 
       - name: cache vendor
         id: cache
