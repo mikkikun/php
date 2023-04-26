@@ -26,7 +26,6 @@ jobs:
             ${{ runner.os }}-composer-
         
       - name: composer install
-        shell: bash
         if: steps.cache.outputs.cache-hit != 'true'
         run: cd backend && composer install -n --prefer-dist
         
