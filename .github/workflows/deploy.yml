@@ -26,10 +26,10 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: composer install
-        shell: bash -xe {0} # custom shell
         if: steps.cache.outputs.cache-hit != 'true'
-        run: cd backend && composer install -n --prefer-dist
-
+        run: composer install
+        working-directory: ./src
+        
       - name: set laravel env
         run: echo "${{ secrets.LARAVEL_ENV }}" > .env
         working-directory: ./src
