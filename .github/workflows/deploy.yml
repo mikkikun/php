@@ -37,7 +37,7 @@ jobs:
 
       - name: run unit test
         run: vendor/bin/phpunit tests/
-        working-directory: ./src
+        working-directory: ./
 
   deploy:
     runs-on: ubuntu-latest
