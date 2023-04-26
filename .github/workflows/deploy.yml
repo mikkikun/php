@@ -24,14 +24,11 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-
-      - name: Go to project root directory
-        run: cd php
         
       - name: composer install
+        shell: bash
         if: steps.cache.outputs.cache-hit != 'true'
-        run: composer install -n --prefer-dist
-        working-directory: ./php
+        run: cd backend && composer install -n --prefer-dist
         
       - name: set laravel env
         run: echo "${{ secrets.LARAVEL_ENV }}" > .env
