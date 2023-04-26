@@ -25,7 +25,7 @@ jobs:
 
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: composer install
+        run: composer install -n --prefer-dist
         working-directory: ./src
         
       - name: set laravel env
