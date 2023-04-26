@@ -79,4 +79,4 @@ jobs:
         working-directory: ./src
         run: |
           # デプロイ
-          vendor/bin/dep deploy 18.183.217.103
+          vendor/bin/dep deploy 18.177.140.36
