@@ -16,9 +16,7 @@ jobs:
              sudo apt-get update
              sudo apt-get install -y php7.4
 
-      - name: cache vendor
-        id: cache
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
           path: ./vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -48,9 +46,8 @@ jobs:
 
       - name: cache vendor
         id: cache
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          ref: master
           path: ./vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
