@@ -27,8 +27,7 @@ jobs:
 
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
-        working-directory: ./src
+        run: cd backend && composer install -n --prefer-dist
         
       - name: set laravel env
         run: echo "${{ secrets.LARAVEL_ENV }}" > .env
