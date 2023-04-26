@@ -25,6 +25,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
+      - name: Go to project root directory
+        run: cd php
+        
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
         run: cd php && composer install -n --prefer-dist
