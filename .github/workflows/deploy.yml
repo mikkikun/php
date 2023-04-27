@@ -8,6 +8,28 @@ on:
 jobs:
   unit-test:
     runs-on: ubuntu-22.04
+    
+    services:
+      mysql: 
+        image: mysql:8.0.19
+        ports:
+          - 3306:3306
+        env:  
+          MYSQL_ROOT_PASSWORD: dbuser
+          MYSQL_DATABASE: test-pf
+          MYSQL_USER: dbuser
+          MYSQL_PASSWORD: dbuser
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10 #optionsでMySQLが起動したかヘルスチェックするようにします。
+   
+    #アプリ側（テスト用DB）設定
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: test-pf
+      DB_USERNAME: dbuser
+      DB_PASSWORD: dbuser
+    
     steps:
       - uses: actions/checkout@v2
       - name: Install PHP 7.4
@@ -29,7 +51,28 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
         working-directory: ./
-         
+        
+      - name: composer dump autoload
+        run: composer dump-autoload
+        working-directory: ./
+        
+      - name: generate key
+        run: php artisan key:generate --env=testing
+        working-directory: ./
+        
+      - name: migrate 
+        env:
+          DB_HOST: 127.0.0.1
+        run: php artisan migrate --force
+        working-directory: ./
+        
+      - name: unit test 
+        env:
+          DB_HOST: 127.0.0.1
+        run:  ./vendor/bin/phpunit
+        working-directory: ./
+     
+     
         
       - name: set laravel env
         run: echo "${{ secrets.LARAVEL_ENV }}" > .env
