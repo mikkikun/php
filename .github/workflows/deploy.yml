@@ -104,7 +104,7 @@ jobs:
         working-directory: ./
           
       - name: add known hosts # known_hostsに追加
-        run: ssh-keyscan 34.32.12.66 >> ~/.ssh/known_hosts
+        run: ssh-keyscan 54.248.161.254 >> ~/.ssh/known_hosts
         
       - name: composer require deployer/deployer #depコマンドを叩けるようにする。
         run: cd backend && composer require deployer/deployer --dev
@@ -115,4 +115,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-northeast-1
           AWS_DEFAULT_OUTPUT: json
-        run: cd backend && ./vendor/bin/dep deploy LaravelWeb1 -vvv #LaravelWeb1はdeploy.phpで指定したstage。
+        run: cd backend && ./vendor/bin/dep deploy 54.248.161.254 
