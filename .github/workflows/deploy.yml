@@ -107,7 +107,8 @@ jobs:
         run: ssh-keyscan 54.248.161.254 >> ~/.ssh/known_hosts
         
       - name: composer require deployer/deployer #depコマンドを叩けるようにする。
-        run: cd backend && composer require deployer/deployer --dev
+        run: composer require deployer/deployer --dev
+        working-directory: ./
         
       - name: deploy #デプロイ実行
         env:
@@ -115,4 +116,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-northeast-1
           AWS_DEFAULT_OUTPUT: json
-        run: cd backend && ./vendor/bin/dep deploy 54.248.161.254 
+        run: ./vendor/bin/dep deploy 54.248.161.254 
+        working-directory: ./
