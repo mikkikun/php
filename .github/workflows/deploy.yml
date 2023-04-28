@@ -10,25 +10,23 @@ jobs:
     runs-on: ubuntu-22.04
     
     services:
-      db: 
+      mysql: 
         image: mysql:8.0.19
         ports:
           - 3306:3306
         env:  
-          MYSQL_ROOT_PASSWORD: dbuser
-          MYSQL_DATABASE: pf
-          MYSQL_USER: dbuser
-          MYSQL_PASSWORD: dbuser
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: testdatabase
         options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10 #optionsでMySQLが起動したかヘルスチェックするようにします。
    
     #アプリ側（テスト用DB）設定
     env:
       DB_CONNECTION: mysql
-      DB_HOST: db
+      DB_HOST: 127.0.0.1
       DB_PORT: 3306
-      DB_DATABASE: pf
-      DB_USERNAME: dbuser
-      DB_PASSWORD: dbuser
+      DB_DATABASE: testdatabase
+      DB_USERNAME: root
+      DB_PASSWORD: password
     
     steps:
       - uses: actions/checkout@v2
