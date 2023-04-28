@@ -71,12 +71,15 @@ jobs:
         working-directory: ./
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: unit-test
     steps:
       - uses: actions/checkout@v2
       - name: Setup PHP 7.4
-        run: sudo update-alternatives --set php /usr/bin/php7.4
+        run: |
+             sudo add-apt-repository -y ppa:ondrej/php
+             sudo apt-get update
+             sudo apt-get install -y php7.4
 
       - name: cache vendor
         id: cache
@@ -89,7 +92,8 @@ jobs:
 
       - name: composer install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: cd backend && composer install -n --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: ./
 
       - name: setup ssh
         working-directory: ./src
@@ -100,7 +104,7 @@ jobs:
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > /home/runner/.ssh/MyKeypair.pem
           chmod 600 /home/runner/.ssh/MyKeypair.pem
           # known_hostsに追加
-          ssh-keyscan 18.183.217.103 >> ~/.ssh/known_hosts
+          ssh-keyscan 18.177.140.36 >> ~/.ssh/known_hosts
           
 
       - name: deploy to EC2 with rolling updates
