@@ -69,16 +69,6 @@ jobs:
           DB_HOST: 127.0.0.1
         run:  ./vendor/bin/phpunit
         working-directory: ./
-     
-     
-        
-      - name: set laravel env
-        run: echo "${{ secrets.LARAVEL_ENV }}" > .env
-        working-directory: ./
-
-      - name: run unit test
-        run: vendor/bin/phpunit tests/
-        working-directory: ./
 
   deploy:
     runs-on: ubuntu-latest
