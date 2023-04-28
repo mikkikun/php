@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     
     services:
-      mysql: 
+      db: 
         image: mysql:8.0.19
         ports:
           - 3306:3306
