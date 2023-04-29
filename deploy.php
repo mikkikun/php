@@ -28,7 +28,6 @@ host('cardmatch.click')
     // ->set('identity_file', '~/Desktop/aws-and-infra-ssh-key.pem')
     ->set('deploy_path', '/var/www/php');
 
-// タスク
 task('build', function () {
     ('cd {{release_path}} && build');
 });
