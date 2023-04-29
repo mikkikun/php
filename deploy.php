@@ -21,9 +21,9 @@ set('allow_anonymous_stats', false);
 set('repository', 'https://github.com/mikkikun/php.git');
 set('composer_options', 'install --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader');
 // host('cardmatch.click')
-host('18.183.217.103')
+host('54.248.161.254')
     ->set('remote_user', 'ec2-user')
-    ->set('identity_file', '/Applications/MAMP/htdocs/pf-docker/aws-and-infra-ssh-key.pem')
+    ->set('identity_file', '/root/.ssh/aws-and-infra-ssh-key.pem')
     // ->set('identity_file', 'ssh -i ~/Desktop/aws-and-infra-ssh-key.pem')
     // ->set('identity_file', '~/Desktop/aws-and-infra-ssh-key.pem')
     ->set('deploy_path', '/var/www/php');
