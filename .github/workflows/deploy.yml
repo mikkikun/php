@@ -67,7 +67,7 @@ jobs:
       - name: unit test 
         env:
           DB_HOST: 127.0.0.1
-        run:  ./vendor/bin/phpunit
+        run:  php artisan test
         working-directory: ./
 
   deploy:
