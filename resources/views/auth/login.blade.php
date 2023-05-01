@@ -71,7 +71,7 @@
                             パスワードを忘れた場合はこちら
                         </a>
                     @endif
-                    <form methods="POST" action="{{ route('login') }}" class="d-flex justify-content-center login_container">
+                    <form methods="POST" action="{{ route('guestLogin') }}" class="d-flex justify-content-center login_container">
                         @csrf
                         <button class="btn login_btn2">ゲストログインする</button>
                     </form>

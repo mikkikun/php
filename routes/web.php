@@ -24,7 +24,7 @@ use App\Http\Controllers\Admin\MapController;
 Route::view('/', 'welcome');
 
 Auth::routes();
-
+Route::get('/guest-login', [ LoginController::class, 'guest'])->name('guestLogin');
 
 
 Route::group(['prefix' => 'admin'], function() {
