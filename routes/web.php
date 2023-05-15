@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\MapController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
