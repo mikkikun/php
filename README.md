@@ -30,7 +30,7 @@
 <h1>AWS構成図</h1>
 
 
-<h2>GitHub Actions/CD</h2>
+<h2>GitHub Actions</h2>
 <p>Githubへのpush時に、UnitTestが自動で実行されます。</p>
 <p>masterブランチへのpushでは、UnitTestが成功した場合、EC2への自動デプロイが実行されます</p>
 
