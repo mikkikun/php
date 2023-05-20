@@ -2,7 +2,7 @@
 <p>カードゲーマー同士の交流が出来るサイトです。</p>
 <p>自分が持ってるカードゲームを一緒にプレイ出来る友達も探せます！！</p>
 <p>レスポンシブ対応しているのでスマホからもご確認いただけます。</p> 
-
+![image](https://user-images.githubusercontent.com/89953353/238958435-2ab52048-e664-4254-abfb-07a8b0a5b918.png)
 
 <h1>URL</h1>
 <p>https://cardmatch.click/<p>
@@ -23,12 +23,11 @@
 <p>Google Maps API</p>
 <p>git(gitHub)</p>
 <p>Visual Studio Code</p>
-<p>Adobe XD(画面遷移図)</p>
-<p>lucidchart(ER図)</p>
-<p>Drawio(AWS構成図)</p>
+<p>Drawio(ER図、AWS構成図)</p>
+
+<h1>ER図</h1>
 
 <h1>AWS構成図</h1>
-
 
 <h2>GitHub Actions</h2>
 <p>Githubへのpush時に、UnitTestが自動で実行されます。</p>
