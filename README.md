@@ -2,7 +2,7 @@
 <p>カードゲーマー同士の交流が出来るサイトです。</p>
 <p>自分が持ってるカードゲームを一緒にプレイ出来る友達も探せます！！</p>
 <p>レスポンシブ対応しているのでスマホからもご確認いただけます。</p> 
-![image](https://user-images.githubusercontent.com/89953353/238958435-2ab52048-e664-4254-abfb-07a8b0a5b918.png)
+<img width="1280" alt="スクリーンショット 2023-05-17 21 56 57" src="https://github.com/mikkikun/php/assets/89953353/2ab52048-e664-4254-abfb-07a8b0a5b918">
 
 <h1>URL</h1>
 <p>https://cardmatch.click/<p>
@@ -26,8 +26,10 @@
 <p>Drawio(ER図、AWS構成図)</p>
 
 <h1>ER図</h1>
+<img width="484" alt="スクリーンショット 2023-05-20 18 08 13" src="https://github.com/mikkikun/php/assets/89953353/ae33d95a-14e3-45e8-b734-e266e05e89dd">
 
 <h1>AWS構成図</h1>
+<img width="512" alt="スクリーンショット 2023-05-20 18 11 22" src="https://github.com/mikkikun/php/assets/89953353/60705326-176c-4edb-9783-22002e8ce26e">
 
 <h2>GitHub Actions</h2>
 <p>Githubへのpush時に、UnitTestが自動で実行されます。</p>
