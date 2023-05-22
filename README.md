@@ -16,6 +16,7 @@
 <p>Laravel 8.83.27</p>
 <p>MySQL 8.0.33</p>
 <p>phpMyAdmin 5.2.1</p>
+<p>deployer 7.3</p>
 <p>Nginx</p>
 <p>AWS(EC2, S3, RDS, Route 53, ELB)</p>
 <p>Docker 20.10.23 / Docker compose 2.15.1 (開発環境)</p>
