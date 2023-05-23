@@ -21,7 +21,7 @@ set('allow_anonymous_stats', false);
 set('repository', 'https://github.com/mikkikun/php.git');
 set('composer_options', 'install --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader');
 // host('cardmatch.click')
-host('13.230.189.77')
+host('18.183.226.34')
     // ->set('stage', 'cardmatch')
     ->set('remote_user', 'ec2-user')
     // ->set('identity_file', '/root/.ssh/aws-and-infra-ssh-key.pem')
