@@ -116,5 +116,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-northeast-1
           AWS_DEFAULT_OUTPUT: json
-        run: ./vendor/bin/dep deploy 13.230.189.77
+        run: ./vendor/bin/dep deploy 18.183.226.34
         working-directory: ./
